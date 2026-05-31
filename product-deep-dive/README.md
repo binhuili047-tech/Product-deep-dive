@@ -453,9 +453,24 @@ Check:
 
 它的重点不是“复述功能”，而是把一个 AI 产品拆成可讨论、可复盘、可学习、可迁移的产品分析框架。
 
+### 版本更新摘要
+
+| 版本 | 重点 | 更新内容 |
+|---|---|---|
+| v1.2 | 文档化、分发和跨 Agent 支持 | 补充双语 README、`lark-cli` 前置条件、Codex/Claude Code 安装路径、LICENSE 展示、版本化 Changelog 和安装结构修正。 |
+| v1.1 | 飞书交付、可编辑画板和排版规则 | 增加飞书文档默认创建/更新、可编辑飞书白板架构图、严格触发条件、动态高价值问题、产品经理启发高亮块和表格灰底加粗规则。 |
+| v1.0 | 初始产品拆解框架 | 建立 13 章 AI 产品深度拆解框架、核心结论、证据分层、信息缺口清单和基础 eval 覆盖。 |
+
+完整记录见 [`../CHANGELOG.md`](../CHANGELOG.md)。
+
 ### 适用场景
 
-适合这些请求：
+只有同时满足以下两个条件时才应该触发这个 skill：
+
+1. 用户要对某个 AI 产品做深度拆解、深度分析、评估框架或结构化框架搭建。
+2. 用户希望最终输出为飞书文档、飞书云文档，或飞书文档型长文拆解。
+
+适合的请求示例：
 
 ```text
 现在我要拆解星野产品，帮我进行框架搭建，并输出飞书文档
@@ -469,13 +484,16 @@ Check:
 帮我写一篇飞书文档型 AI 产品经理拆解文章
 ```
 
-不适合这些请求：
+不适合的请求：
 
 - 只问一个 AI 产品是什么。
 - 只要几句话观点。
 - 只做产品推荐。
 - 只讨论 Agent/RAG/LLM 概念。
 - 不需要飞书文档交付。
+- 只是提到了 AI、Agent、RAG、LLM、SaaS、AIGC 或某个产品名。
+
+如果意图不明确，应该先问一句：`你是想生成一篇飞书文档型 AI 产品深度拆解吗？`
 
 ### 前置条件：lark-cli
 
@@ -529,6 +547,22 @@ Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse
 
 安装后重启 Codex 或 Claude Code。
 
+### 第一次成功运行
+
+安装完成后，可以直接对 Codex 或 Claude Code 说：
+
+```text
+现在我要拆解星野产品，帮我进行框架搭建，并输出飞书文档
+```
+
+正常情况下，Agent 应该：
+
+1. 检索或读取产品公开资料。
+2. 生成飞书文档型产品拆解结构。
+3. 在没有目标文档 URL 时创建新的飞书文档。
+4. 在文档中写入核心结论、13 章正文、表格、分层架构图和信息缺口清单。
+5. 最终只返回简短确认和飞书文档链接。
+
 ### 输出内容
 
 默认生成：
@@ -543,6 +577,73 @@ Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse
 - 最终六层架构图。
 - 信息缺口清单。
 
+默认结构为：
+
+```text
+产品深度拆解：[产品名]
+
+产品基础信息
+核心结论
+
+1. 产品定位与体验总结
+2. 测试评估体系
+3. 测试流程具体截图
+4. 差异化定位
+5. 能力边界
+6. 市场层拆解
+7. 商业层拆解
+8. 场景/用户层拆解
+9. 技术层拆解
+10. 模型层拆解
+11. 不确定性处理
+12. 基础层拆解
+13. 最终架构图
+
+信息缺口清单
+```
+
+### 核心能力
+
+#### 产品经理深度
+
+- 从可见体验反推产品定位、核心用户、使用场景和产品取舍。
+- 不使用固定模板硬套问题，而是根据具体产品动态改写高价值问题。
+- 每个关键章节都输出可复用的产品经理启发，帮助沉淀方法论。
+
+#### 证据分层
+
+文档会尽量区分：
+
+- **事实**：官网、截图、公开资料、官方文档中明确可见的内容。
+- **观察**：真实体验路径中看到的行为。
+- **推测**：基于体验和产品形态反推的系统、流程或技术判断。
+- **判断**：分析者的产品观点。
+- **待验证**：缺少资料、需要后续实测或访谈确认的内容。
+
+#### 测试评估
+
+Skill 会针对具体产品场景生成测试评估表，而不是复用固定权重。常见维度包括：
+
+- 结果质量。
+- 过程体验。
+- Aha Moment。
+- 摩擦点。
+- 安全与不确定性处理。
+- 商业价值。
+
+#### 六层架构
+
+最终架构图默认使用六层：
+
+1. 市场层
+2. 商业层
+3. 用户层
+4. 应用层
+5. 模型层
+6. 基础层
+
+每一层会尽量在对应章节下生成小图，最后再生成一张总架构图。
+
 ### 飞书排版规范
 
 文档默认面向团队分享，因此会要求：
@@ -552,6 +653,118 @@ Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse
 - 表格第一行和第一列灰底加粗。
 - 架构图优先使用可编辑飞书画板。
 - 最终架构图按照 `市场层 -> 商业层 -> 用户层 -> 应用层 -> 模型层 -> 基础层` 从上到下排布。
+
+### 飞书与画板依赖
+
+完整飞书文档交付需要：
+
+- 已安装 `lark-cli`。
+- 已完成飞书/Lark 用户身份登录。
+- 具备飞书文档创建/更新权限。
+- 当需要写入可编辑架构图时，建议开通飞书画板节点读写权限。
+- 当需要把 SVG 转成可编辑白板节点时，建议允许运行 `@larksuite/whiteboard-cli`。
+
+推荐的架构图写入流程是：
+
+```text
+结构化架构内容
+  -> 坐标化 SVG
+  -> @larksuite/whiteboard-cli 转 OpenAPI 节点
+  -> 写入可编辑飞书白板
+  -> 检查文档中是否为 <whiteboard token=...>
+```
+
+如果飞书权限不可用，skill 仍然可以生成结构化草稿，但无法可靠创建或更新飞书文档。
+
+### 示例场景
+
+适合用来分析：
+
+- AI 陪伴产品。
+- AI Agent 产品。
+- AIGC 工具。
+- AI 社交产品。
+- AI 创作者工具。
+- AI Workflow 产品。
+- 需要产品经理视角深度拆解的新兴 AI 应用。
+
+更好的 prompt 示例：
+
+```text
+我要拆解这个 AI 产品：https://example.com
+目标是给团队做产品经理拆解分享，请直接输出飞书文档。
+```
+
+### 更新方式
+
+Codex：
+
+```powershell
+$repoPath = "$env:USERPROFILE\.codex\skill-repos\Product-deep-dive"
+$skillPath = "$env:USERPROFILE\.codex\skills\product-deep-dive"
+Set-Location $repoPath
+git pull
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
+```
+
+Claude Code：
+
+```powershell
+$repoPath = "$env:USERPROFILE\.claude\skill-repos\Product-deep-dive"
+$skillPath = "$env:USERPROFILE\.claude\skills\product-deep-dive"
+Set-Location $repoPath
+git pull
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
+```
+
+更新后重启 Codex 或 Claude Code。
+
+### 常见问题
+
+#### Skill 没有触发
+
+确认请求中同时包含：
+
+- AI 产品深度拆解意图。
+- 飞书文档输出意图。
+
+推荐说法：
+
+```text
+帮我对 XXX AI 产品做深度拆解，并输出飞书文档
+```
+
+#### 飞书文档创建失败
+
+检查：
+
+- `lark-cli --version` 是否可用。
+- `lark-cli docs +create --api-version v2 --help` 是否可用。
+- 是否已完成用户身份授权。
+- 当前身份是否为 `user`，而不是只能访问机器人资源的 `bot`。
+- 如果命令返回缺少 scope，按提示授权对应 scope 后重试。
+
+#### 架构图不是可编辑画板
+
+检查：
+
+- 文档里是否是 `<whiteboard token=...>`，而不是图片块。
+- 飞书画板权限是否已授权。
+- SVG 是否已经通过 `whiteboard-cli` 转为 OpenAPI/raw 节点后写入。
+
+### 仓库结构
+
+```text
+Product-deep-dive/
+  README.md
+  CHANGELOG.md
+  LICENSE
+  product-deep-dive/
+    README.md
+    SKILL.md
+    evals/
+      evals.json
+```
 
 ### 维护建议
 
