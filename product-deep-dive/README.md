@@ -16,6 +16,8 @@
 
 Includes a `LICENSE` file in the GitHub repository. / GitHub 仓库已包含 `LICENSE` 文件。
 
+See [`../CHANGELOG.md`](../CHANGELOG.md) for the major changes made during the skill-building process. / 重要修改记录见 [`../CHANGELOG.md`](../CHANGELOG.md)。
+
 ---
 
 ## Required Prerequisite: lark-cli
@@ -56,25 +58,31 @@ If `lark-cli` is missing, tell the user to install and configure it before expec
 For Codex:
 
 ```powershell
+$repoPath = "$env:USERPROFILE\.codex\skill-repos\Product-deep-dive"
 $skillPath = "$env:USERPROFILE\.codex\skills\product-deep-dive"
-if (Test-Path $skillPath) {
-  Set-Location $skillPath
+if (Test-Path $repoPath) {
+  Set-Location $repoPath
   git pull
 } else {
-  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $skillPath
+  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $repoPath
 }
+New-Item -ItemType Directory -Force $skillPath | Out-Null
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
 ```
 
 For Claude Code:
 
 ```powershell
+$repoPath = "$env:USERPROFILE\.claude\skill-repos\Product-deep-dive"
 $skillPath = "$env:USERPROFILE\.claude\skills\product-deep-dive"
-if (Test-Path $skillPath) {
-  Set-Location $skillPath
+if (Test-Path $repoPath) {
+  Set-Location $repoPath
   git pull
 } else {
-  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $skillPath
+  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $repoPath
 }
+New-Item -ItemType Directory -Force $skillPath | Out-Null
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
 ```
 
 Then verify:
@@ -120,25 +128,31 @@ npx -y @larksuite/whiteboard-cli@^0.2.10 -v
 For Codex:
 
 ```powershell
+$repoPath = "$env:USERPROFILE\.codex\skill-repos\Product-deep-dive"
 $skillPath = "$env:USERPROFILE\.codex\skills\product-deep-dive"
-if (Test-Path $skillPath) {
-  Set-Location $skillPath
+if (Test-Path $repoPath) {
+  Set-Location $repoPath
   git pull
 } else {
-  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $skillPath
+  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $repoPath
 }
+New-Item -ItemType Directory -Force $skillPath | Out-Null
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
 ```
 
 For Claude Code:
 
 ```powershell
+$repoPath = "$env:USERPROFILE\.claude\skill-repos\Product-deep-dive"
 $skillPath = "$env:USERPROFILE\.claude\skills\product-deep-dive"
-if (Test-Path $skillPath) {
-  Set-Location $skillPath
+if (Test-Path $repoPath) {
+  Set-Location $repoPath
   git pull
 } else {
-  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $skillPath
+  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $repoPath
 }
+New-Item -ItemType Directory -Force $skillPath | Out-Null
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
 ```
 
 Restart Codex or Claude Code after installation.
@@ -345,10 +359,13 @@ Better prompt with target:
 ```text
 Product-deep-dive/
   README.md          # Bilingual project guide
-  SKILL.md           # Codex / Claude-compatible skill instructions
+  CHANGELOG.md       # Notable changes and iteration history
   LICENSE            # Repository license
-  evals/
-    evals.json       # Skill evaluation cases
+  product-deep-dive/
+    README.md        # Skill-level guide
+    SKILL.md         # Codex / Claude-compatible skill instructions
+    evals/
+      evals.json     # Skill evaluation cases
 ```
 
 ---
@@ -360,15 +377,21 @@ If you already installed the skill:
 For Codex:
 
 ```powershell
-Set-Location "$env:USERPROFILE\.codex\skills\product-deep-dive"
+$repoPath = "$env:USERPROFILE\.codex\skill-repos\Product-deep-dive"
+$skillPath = "$env:USERPROFILE\.codex\skills\product-deep-dive"
+Set-Location $repoPath
 git pull
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
 ```
 
 For Claude Code:
 
 ```powershell
-Set-Location "$env:USERPROFILE\.claude\skills\product-deep-dive"
+$repoPath = "$env:USERPROFILE\.claude\skill-repos\Product-deep-dive"
+$skillPath = "$env:USERPROFILE\.claude\skills\product-deep-dive"
+Set-Location $repoPath
 git pull
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
 ```
 
 Restart Codex or Claude Code after updating.
@@ -465,25 +488,31 @@ npx -y @larksuite/whiteboard-cli@^0.2.10 -v
 Codex:
 
 ```powershell
+$repoPath = "$env:USERPROFILE\.codex\skill-repos\Product-deep-dive"
 $skillPath = "$env:USERPROFILE\.codex\skills\product-deep-dive"
-if (Test-Path $skillPath) {
-  Set-Location $skillPath
+if (Test-Path $repoPath) {
+  Set-Location $repoPath
   git pull
 } else {
-  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $skillPath
+  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $repoPath
 }
+New-Item -ItemType Directory -Force $skillPath | Out-Null
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
 ```
 
 Claude Code:
 
 ```powershell
+$repoPath = "$env:USERPROFILE\.claude\skill-repos\Product-deep-dive"
 $skillPath = "$env:USERPROFILE\.claude\skills\product-deep-dive"
-if (Test-Path $skillPath) {
-  Set-Location $skillPath
+if (Test-Path $repoPath) {
+  Set-Location $repoPath
   git pull
 } else {
-  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $skillPath
+  git clone https://github.com/VioletScar-Hui/Product-deep-dive.git $repoPath
 }
+New-Item -ItemType Directory -Force $skillPath | Out-Null
+Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse -Force
 ```
 
 安装后重启 Codex 或 Claude Code。
@@ -516,7 +545,6 @@ if (Test-Path $skillPath) {
 
 如果你要继续完善这个仓库，建议后续补充：
 
-- `CHANGELOG.md`
 - `CONTRIBUTING.md`
 - 示例飞书文档截图或公开 demo 链接
 - 更多 eval cases
