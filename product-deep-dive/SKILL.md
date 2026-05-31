@@ -180,6 +180,7 @@ Use these as seed questions. Rewrite 3-8 questions per section based on the prod
 
 - Which concrete user scenario should be used as the main test case?
 - What should be evaluated as end-result quality, and what should be evaluated as process capability?
+- How should the evaluation move from black-box end-to-end output checks, to glass-box process and decision-path checks, and finally to white-box full-process multidimensional checks?
 - Which dimensions deserve higher weight because they drive real business value?
 - What score would count as usable, recommendable, or production-grade?
 - Which failure should immediately lower the product's score?
@@ -307,6 +308,26 @@ In section 2, build a scoring table for a concrete scenario. Include:
 - Score placeholder when no test was performed.
 
 Use weights based on the product's actual value promise. Do not reuse the same weights for every product.
+
+The main dimensions of the testing scenario must always use this three-layer evaluation model:
+
+| Main dimension | Evaluation lens | Purpose |
+|---|---|---|
+| 端到端 | 黑盒评测：只看最终输出结果 | Judge whether the product can complete the user's target scenario and produce a usable final result. |
+| 过程能力 | 玻璃盒评测：关注中间过程和决策路径 | Judge whether the product's workflow, state handling, tool use, reasoning path, recovery, and interaction process are reliable. |
+| 综合评测 | 白盒评测：全流程、多维度综合评估 | Judge the full product-system quality across output, process, model orchestration, cost, safety, data, and business value. |
+
+Build second-level indicators dynamically under these three main dimensions based on the concrete product and scenario. Do not replace the three main dimensions with arbitrary labels. Instead, adapt sub-dimensions and evaluation items.
+
+Example structure:
+
+```markdown
+| 主维度 | 二级指标 | 评估项 | 解释 | 评分逻辑 | 权重/满分 | 当前得分 |
+|---|---|---|---|---|---|---|
+| 端到端 | 任务完成度 | 最终结果是否满足用户目标 | ... | ... | ... | 待实测 |
+| 过程能力 | 决策路径 | 中间步骤是否可解释、可追踪、可恢复 | ... | ... | ... | 待实测 |
+| 综合评测 | 安全/成本/留存综合 | 全流程是否兼顾质量、风险和商业可持续性 | ... | ... | ... | 待实测 |
+```
 
 ## Feishu Table Formatting
 

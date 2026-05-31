@@ -4,6 +4,17 @@ All notable changes to `product-deep-dive` are documented here by version.
 
 本文件按版本记录 `product-deep-dive` 的重要变更。
 
+## v1.3 - Three-Layer Evaluation Framework
+
+### Changed
+
+- Standardized section 2 `测试评估体系` around three required main dimensions:
+  - `端到端`: black-box evaluation focused on final output, scenario completion, and whether the user receives a usable result.
+  - `过程能力`: glass-box evaluation focused on intermediate process, state changes, tool use, decision path, interaction recovery, and workflow reliability.
+  - `综合评测`: white-box evaluation focused on full-process, multidimensional assessment across output, process, model orchestration, cost, safety, data, and business value.
+- Required second-level indicators to be generated dynamically under these three main dimensions based on the concrete product and testing scenario.
+- Updated README guidance so humans and AI agents understand that the main evaluation dimensions are fixed, while sub-indicators and weights remain scenario-specific.
+
 ## v1.2 - Documentation, Distribution, and Cross-Agent Support
 
 ### Added

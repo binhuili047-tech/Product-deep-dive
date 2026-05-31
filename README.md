@@ -24,6 +24,7 @@ See [`CHANGELOG.md`](CHANGELOG.md) for the major changes made during the skill-b
 
 | Version | Focus | What Changed |
 |---|---|---|
+| v1.3 | Three-layer evaluation framework | Standardized testing around `端到端` black-box output evaluation, `过程能力` glass-box process and decision-path evaluation, and `综合评测` white-box full-process multidimensional evaluation. |
 | v1.2 | Documentation, distribution, and cross-agent support | Added bilingual README onboarding, `lark-cli` prerequisite checks, Codex/Claude Code install paths, license visibility, and versioned changelog navigation. |
 | v1.1 | Feishu delivery, whiteboards, and formatting rules | Added Feishu document delivery defaults, editable whiteboard architecture diagrams, strict trigger discipline, dynamic high-value questions, callout rules, and gray/bold table styling. |
 | v1.0 | Initial product deep-dive framework | Established the 13-section AI product teardown framework, core conclusions, evidence discipline, information gap checklist, and evaluation coverage. |
@@ -270,14 +271,15 @@ The skill separates:
 
 ### Testing and Evaluation
 
-It builds scenario-specific scoring tables covering:
+It builds scenario-specific scoring tables with three required main dimensions:
 
-- Result quality.
-- Process quality.
-- Aha Moment.
-- Friction points.
-- Safety and uncertainty handling.
-- Business value.
+| Main Dimension | Evaluation Style | Focus |
+|---|---|---|
+| 端到端 | Black-box evaluation | Final output, scenario completion, and whether the product solves the user's visible task. |
+| 过程能力 | Glass-box evaluation | Intermediate process, decision path, state handling, tool use, interaction recovery, and workflow reliability. |
+| 综合评测 | White-box evaluation | Full-process multidimensional assessment across output, process, model orchestration, cost, safety, data, and business value. |
+
+Second-level indicators are generated dynamically under these three main dimensions based on the concrete product and testing scenario.
 
 ### Six-Layer Architecture
 
@@ -457,6 +459,7 @@ Check:
 
 | 版本 | 重点 | 更新内容 |
 |---|---|---|
+| v1.3 | 测试评估体系升级 | 将测试场景主维度固定为“端到端、过程能力、综合评测”，从黑盒结果评测扩展到玻璃盒过程/决策路径评测，再到白盒全流程多维综合评估。 |
 | v1.2 | 文档化、分发和跨 Agent 支持 | 补充双语 README、`lark-cli` 前置条件、Codex/Claude Code 安装路径、LICENSE 展示、版本化 Changelog 和安装结构修正。 |
 | v1.1 | 飞书交付、可编辑画板和排版规则 | 增加飞书文档默认创建/更新、可编辑飞书白板架构图、严格触发条件、动态高价值问题、产品经理启发高亮块和表格灰底加粗规则。 |
 | v1.0 | 初始产品拆解框架 | 建立 13 章 AI 产品深度拆解框架、核心结论、证据分层、信息缺口清单和基础 eval 覆盖。 |
@@ -622,14 +625,15 @@ Copy-Item -Path "$repoPath\product-deep-dive\*" -Destination $skillPath -Recurse
 
 #### 测试评估
 
-Skill 会针对具体产品场景生成测试评估表，而不是复用固定权重。常见维度包括：
+Skill 会先固定三个主维度，再根据具体产品和测试场景生成二级指标，而不是复用固定权重：
 
-- 结果质量。
-- 过程体验。
-- Aha Moment。
-- 摩擦点。
-- 安全与不确定性处理。
-- 商业价值。
+| 主维度 | 评测视角 | 关注重点 |
+|---|---|---|
+| 端到端 | 黑盒评测 | 仅关注最终输出结果、任务完成度，以及用户是否拿到了可用结果。 |
+| 过程能力 | 玻璃盒评测 | 关注中间过程、状态变化、工具调用、决策路径、交互恢复和流程稳定性。 |
+| 综合评测 | 白盒评测 | 从全流程、多维度综合评估输出质量、过程质量、模型编排、成本、安全、数据沉淀和商业价值。 |
+
+二级指标会根据具体场景动态生成，例如角色陪伴、AI Agent、AI 视频生成、AI 搜索、AI 编程等场景会有不同的任务完成度、可控性、稳定性、成本、安全和留存指标。
 
 #### 六层架构
 
