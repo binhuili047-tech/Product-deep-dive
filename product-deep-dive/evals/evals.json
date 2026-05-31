@@ -1,0 +1,30 @@
+{
+  "skill_name": "product-deep-dive",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我深度拆解 OiiOii：https://www.oiioii.ai/home，最终直接输出飞书文档型产品经理拆解长文。",
+      "expected_output": "Search/fetch current product information, generate the full Feishu document body with sections 10 and 11 ordered as 模型层拆解 then 不确定性处理, 3-8 high-value questions per section in blockquotes, product-manager insight sections in Feishu callout highlight blocks, and a near-square multi-color layered final architecture diagram with 市场层/商业层/用户层/应用层/模型层/基础层, colored layer backgrounds, expansion placeholders, balanced two-column/grid layout, and small modules arranged left-to-right within each layer; then create a new Feishu document in the user's personal cloud documents using lark-cli docs +create because no target Feishu document URL was provided."
+    },
+    {
+      "id": 2,
+      "prompt": "直接写一篇 Cursor 的产品拆解，偏 AI 产品经理视角。我暂时没有截图，官网是 https://cursor.com。",
+      "expected_output": "Search/fetch current product information, draft the full teardown without asking more questions, then create a new Feishu document in the user's personal cloud documents; include 3-8 high-value questions per section in blockquotes, product-manager insight sections in Feishu callout highlight blocks, the official website, missing screenshots as information gaps, and the 13-section framework with section 10 as 模型层拆解, section 11 as 不确定性处理, and a near-square multi-color six-layer final architecture diagram with colored layer backgrounds, expansion placeholders, balanced grid layout, and left-to-right module placement inside every layer."
+    },
+    {
+      "id": 3,
+      "prompt": "我想研究一个 AI Agent 产品，但是只给你产品名，没有资料。你先引导我。",
+      "expected_output": "Ask at most three key questions before writing, focused on the product name/materials and analysis goal/audience, but do not ask whether to create a Feishu document; default delivery is creating a new Feishu document once content is generated."
+    },
+    {
+      "id": 5,
+      "prompt": "现在我要拆解猫箱产品，帮我进行框架搭建",
+      "expected_output": "Search/fetch current product information if possible, generate the framework document body with 3-8 high-value questions per section in blockquotes and product-manager insight sections in Feishu callout highlight blocks, keep section 10 as 模型层拆解 and section 11 as 不确定性处理, include a near-square multi-color 市场层/商业层/用户层/应用层/模型层/基础层 final architecture diagram with colored layer backgrounds, 预留扩展位 placeholders, balanced two-column/grid layout, and small modules arranged from left to right within each layer, then create a new Feishu document in the user's personal cloud documents without asking for a Feishu target link."
+    },
+    {
+      "id": 4,
+      "prompt": "把 OiiOii 的产品深度拆解直接写到这个飞书文档里：https://example.feishu.cn/docx/example_token",
+      "expected_output": "Generate the full Feishu document body, then use lark-cli docs +update with the provided document URL and Markdown content instead of only replying with Markdown in chat."
+    }
+  ]
+}
