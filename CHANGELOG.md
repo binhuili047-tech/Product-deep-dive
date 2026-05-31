@@ -1,10 +1,10 @@
 # Changelog
 
-All notable changes to `product-deep-dive` are documented here.
+All notable changes to `product-deep-dive` are documented here by version.
 
-本文件记录 `product-deep-dive` 在构建和迭代过程中的重要变更。
+本文件按版本记录 `product-deep-dive` 的重要变更。
 
-## 2026-06-01
+## v1.2 - Documentation, Distribution, and Cross-Agent Support
 
 ### Added
 
@@ -26,6 +26,7 @@ All notable changes to `product-deep-dive` are documented here.
   - GitHub license badge
   - repository structure entry for `LICENSE`
   - License section pointing to the `LICENSE` file
+- Added this `CHANGELOG.md`.
 
 ### Changed
 
@@ -44,7 +45,7 @@ All notable changes to `product-deep-dive` are documented here.
   4. understand expected output
 - Corrected installation guidance to match the repository layout: clone/update the repository into a cache directory, then copy the `product-deep-dive/` skill subdirectory into the Codex or Claude Code skills directory.
 
-## 2026-05-31
+## v1.1 - Feishu Delivery, Whiteboards, and Formatting Rules
 
 ### Added
 
@@ -95,7 +96,7 @@ All notable changes to `product-deep-dive` are documented here.
   - preserved editable whiteboard output
   - added per-layer diagrams under the corresponding chapters
 
-## 2026-05-29
+## v1.0 - Initial Product Deep-Dive Framework
 
 ### Added
 

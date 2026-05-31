@@ -20,6 +20,18 @@ See [`CHANGELOG.md`](CHANGELOG.md) for the major changes made during the skill-b
 
 ---
 
+## Version Highlights
+
+| Version | Focus | What Changed |
+|---|---|---|
+| v1.2 | Documentation, distribution, and cross-agent support | Added bilingual README onboarding, `lark-cli` prerequisite checks, Codex/Claude Code install paths, license visibility, and versioned changelog navigation. |
+| v1.1 | Feishu delivery, whiteboards, and formatting rules | Added Feishu document delivery defaults, editable whiteboard architecture diagrams, strict trigger discipline, dynamic high-value questions, callout rules, and gray/bold table styling. |
+| v1.0 | Initial product deep-dive framework | Established the 13-section AI product teardown framework, core conclusions, evidence discipline, information gap checklist, and evaluation coverage. |
+
+See [`CHANGELOG.md`](CHANGELOG.md) for full details.
+
+---
+
 ## Required Prerequisite: lark-cli
 
 This skill is built around Feishu/Lark document delivery. Install and configure `lark-cli` before expecting full document creation, update, or whiteboard workflows to work.
