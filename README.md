@@ -14,12 +14,49 @@
 
 ---
 
-## For AI Agents: Quick Install
+## Required Prerequisite: lark-cli
 
-If a user asks you to install this skill, run:
+This skill is built around Feishu/Lark document delivery. Install and configure `lark-cli` before expecting full document creation, update, or whiteboard workflows to work.
+
+Minimum checks:
 
 ```powershell
-git clone https://github.com/binhuili047-tech/Product-deep-dive.git "$env:USERPROFILE\.codex\skills\product-deep-dive"
+lark-cli --version
+lark-cli auth status
+lark-cli docs +create --api-version v2 --help
+```
+
+If `lark-cli auth status` shows no usable user login, authenticate as a user before running product teardown workflows. When Feishu returns a missing-scope error, follow the scope hint from `lark-cli` and authorize that exact scope.
+
+Optional whiteboard check:
+
+```powershell
+npx -y @larksuite/whiteboard-cli@^0.2.10 -v
+```
+
+Without `lark-cli`, the skill can still draft a teardown framework in chat, but it cannot reliably create or update Feishu documents.
+
+---
+
+## For AI Agents: Quick Install
+
+If a user asks you to install this skill, first check the Feishu delivery prerequisite:
+
+```powershell
+lark-cli --version
+lark-cli auth status
+```
+
+If `lark-cli` is missing, tell the user to install and configure it before expecting Feishu document output. Then install or update the skill:
+
+```powershell
+$skillPath = "$env:USERPROFILE\.codex\skills\product-deep-dive"
+if (Test-Path $skillPath) {
+  Set-Location $skillPath
+  git pull
+} else {
+  git clone https://github.com/binhuili047-tech/Product-deep-dive.git $skillPath
+}
 ```
 
 Then verify:
@@ -29,28 +66,50 @@ Test-Path "$env:USERPROFILE\.codex\skills\product-deep-dive\SKILL.md"
 Get-Content "$env:USERPROFILE\.codex\skills\product-deep-dive\SKILL.md" -TotalCount 8
 ```
 
-Finally, tell the user to restart Codex so the skill index reloads.
-
-If the destination folder already exists, update it:
+Optional Feishu workflow verification:
 
 ```powershell
-Set-Location "$env:USERPROFILE\.codex\skills\product-deep-dive"
-git pull
+lark-cli docs +create --api-version v2 --help
+npx -y @larksuite/whiteboard-cli@^0.2.10 -v
 ```
+
+Finally, tell the user to restart Codex so the skill index reloads.
 
 ---
 
 ## Quick Start for Humans
 
-### 1. Install
+### 1. Prepare lark-cli
+
+Install and log in to `lark-cli` first. Then check:
 
 ```powershell
-git clone https://github.com/binhuili047-tech/Product-deep-dive.git "$env:USERPROFILE\.codex\skills\product-deep-dive"
+lark-cli --version
+lark-cli auth status
+lark-cli docs +create --api-version v2 --help
+```
+
+For editable architecture whiteboards, also check:
+
+```powershell
+npx -y @larksuite/whiteboard-cli@^0.2.10 -v
+```
+
+### 2. Install the skill
+
+```powershell
+$skillPath = "$env:USERPROFILE\.codex\skills\product-deep-dive"
+if (Test-Path $skillPath) {
+  Set-Location $skillPath
+  git pull
+} else {
+  git clone https://github.com/binhuili047-tech/Product-deep-dive.git $skillPath
+}
 ```
 
 Restart Codex after installation.
 
-### 2. Ask for a Feishu product teardown
+### 3. Ask for a Feishu product teardown
 
 ```text
 现在我要拆解星野产品，帮我进行框架搭建，并输出飞书文档
@@ -64,7 +123,7 @@ Restart Codex after installation.
 直接写一篇飞书文档型产品经理拆解文章，产品是 XXX
 ```
 
-### 3. Expected result
+### 4. Expected result
 
 Codex should create or update a Feishu/Lark document containing:
 
@@ -187,13 +246,24 @@ The document formatting rules include:
 
 ## Feishu and Whiteboard Requirements
 
-For full document delivery, install and configure:
+For full document delivery, `lark-cli` is required. Before running a teardown, verify:
 
-- `lark-cli`
-- Feishu/Lark user authentication
-- Feishu document create/update scopes
-- Optional: Feishu whiteboard node read/write scopes
-- Optional: `@larksuite/whiteboard-cli` for SVG-to-whiteboard conversion
+```powershell
+lark-cli --version
+lark-cli auth status
+lark-cli docs +create --api-version v2 --help
+```
+
+Required:
+
+- Feishu/Lark user authentication.
+- Feishu document create/update permissions.
+- User identity when writing to personal cloud documents.
+
+Optional for editable architecture diagrams:
+
+- Feishu whiteboard node read/write scopes.
+- `@larksuite/whiteboard-cli` for SVG-to-whiteboard conversion.
 
 The preferred architecture diagram flow is:
 
@@ -280,10 +350,11 @@ For example:
 
 Check:
 
-- `lark-cli` is installed.
+- `lark-cli --version` works.
+- `lark-cli docs +create --api-version v2 --help` works.
 - User authentication is complete.
 - The current identity is `user`, not `bot`, when writing to the user's cloud documents.
-- The required Feishu document scopes are granted.
+- The required Feishu document scopes are granted. If a command returns a missing-scope hint, authorize that exact scope and retry.
 
 ### Whiteboard diagrams are not editable
 
@@ -327,10 +398,34 @@ Check:
 - 只讨论 Agent/RAG/LLM 概念。
 - 不需要飞书文档交付。
 
+### 前置条件：lark-cli
+
+这个 skill 的目标产物是飞书文档，因此完整使用前需要先安装并登录 `lark-cli`：
+
+```powershell
+lark-cli --version
+lark-cli auth status
+lark-cli docs +create --api-version v2 --help
+```
+
+如果 `lark-cli` 没有登录用户身份，先完成用户授权；如果飞书命令返回缺少 scope，按命令提示授权对应 scope 后重试。
+
+如需生成可编辑架构画板，建议额外检查：
+
+```powershell
+npx -y @larksuite/whiteboard-cli@^0.2.10 -v
+```
+
 ### 安装
 
 ```powershell
-git clone https://github.com/binhuili047-tech/Product-deep-dive.git "$env:USERPROFILE\.codex\skills\product-deep-dive"
+$skillPath = "$env:USERPROFILE\.codex\skills\product-deep-dive"
+if (Test-Path $skillPath) {
+  Set-Location $skillPath
+  git pull
+} else {
+  git clone https://github.com/binhuili047-tech/Product-deep-dive.git $skillPath
+}
 ```
 
 安装后重启 Codex。
@@ -374,4 +469,3 @@ git clone https://github.com/binhuili047-tech/Product-deep-dive.git "$env:USERPR
 ## License
 
 No license file is included yet. Add a `LICENSE` file before encouraging broad public reuse.
-
