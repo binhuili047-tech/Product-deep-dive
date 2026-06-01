@@ -25,6 +25,21 @@
       "id": 4,
       "prompt": "把 OiiOii 的产品深度拆解直接写到这个飞书文档里：https://example.feishu.cn/docx/example_token",
       "expected_output": "Generate the full Feishu document body, then use lark-cli docs +update with the provided document URL and Markdown content instead of only replying with Markdown in chat."
+    },
+    {
+      "id": 6,
+      "prompt": "我要拆解一个 AI Agent 产品，并重点反推它背后是不是 Workflow、单 Agent、多 Agent、有没有 RAG、有没有模型路由。请输出飞书文档。",
+      "expected_output": "Use the product-deep-dive workflow because the user asks for AI product deep teardown and Feishu document output. In technical, model, and uncertainty sections, do not present Workflow, Single Agent, Multi-Agent, RAG, model routing, external plugins, or prompt reconstruction as confirmed facts unless official evidence is available. Include a technical inference table with columns equivalent to 推测对象, 看到什么, 可能机制, 置信度, 为什么这么推, 如何验证, and 风险/Badcase. Use cautious wording such as 可能的提示词结构 for prompt-like reconstruction, and put insufficient evidence into 信息缺口清单."
+    },
+    {
+      "id": 7,
+      "prompt": "帮我对一个 AI 视频生成产品做深度拆解并输出飞书文档，重点看测试评估体系。",
+      "expected_output": "Use section 2 测试评估体系 with the fixed main dimensions 端到端, 过程能力, and 综合评测. Do not replace those main dimensions with product-specific labels. Generate AI-video-specific second-level indicators such as 端到端结果层, 用户层, 模型数据层, 技术层, and cost/copyright/safety where appropriate. Include dimension explanations answering 评什么, 为什么重要, and 怎么评, plus a scenario-specific scoring table with scoring logic, weights/full score, current score or 待实测, and evidence or 待验证 notes."
+    },
+    {
+      "id": 8,
+      "prompt": "现在我要拆解一个 AI 陪伴产品，帮我做框架搭建，并输出飞书文档。市场层要认真做。",
+      "expected_output": "Use the AI companion product-type emphasis when rewriting questions and evaluation indicators. In section 6 市场层拆解, include at least 3 main competitors and a comparison table with the exact columns 平台/公司, 主要角色, 分发渠道, 核心商业模式, 最新公开信息. Use verifiable public information when available and mark incomplete cells 待验证. Also include a competitive landscape diagram with product-relevant axes and place the analyzed product plus at least 3 competitors. Do not substitute the final six-layer architecture diagram for this section-level competitive landscape diagram."
     }
   ]
 }

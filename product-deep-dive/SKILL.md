@@ -47,6 +47,7 @@ Use the local reference files only when their detail is needed. Do not bulk-load
 - `references/chapter-contracts.md`: use when improving the 13-section structure, checking chapter depth, or deciding what each chapter must contain.
 - `references/evaluation-rubrics.md`: use when writing section 2 `测试评估体系`, especially when constructing second-level indicators, dimension explanations, weights, and scoring logic.
 - `references/product-type-playbooks.md`: use when adapting the teardown to a specific AI product type such as AI 陪伴, AI Agent, AI 视频/图片生成, AI 搜索/研究, or AI 编程/DevTool.
+- `references/technical-inference.md`: use when reverse-engineering Workflow, Agent, Multi-Agent, RAG, model routing, tools, external plugins, data pipelines, or prompt-like structures.
 
 When a reference module conflicts with this `SKILL.md`, the `SKILL.md` trigger discipline, Feishu delivery rules, evidence rules, and final self-check remain authoritative. Treat references as depth modules, not new triggers.
 
@@ -300,6 +301,7 @@ For AI, Agent, or AIGC products, go beyond surface features:
 - Infer agents by role only when the product behavior suggests stable task specialization.
 - For each inferred agent, describe input, processing, tools, output, and Badcases.
 - Provide prompt-like reconstructions only as "可能的提示词结构", not as confirmed internal prompts.
+- Use `references/technical-inference.md` for confidence labels, evidence boundaries, validation paths, and badcase analysis. Every non-trivial technical inference should include what was observed, what is inferred, why, confidence, how to verify, and likely Badcases.
 
 Example format:
 
@@ -795,6 +797,7 @@ Before writing to Feishu, check reference-module application:
 - If producing a full 13-section teardown, use `references/chapter-contracts.md` as the depth standard for chapter completeness.
 - If writing section 2 `测试评估体系`, use `references/evaluation-rubrics.md` to verify the three main dimensions, scenario-specific second-level indicators, dimension explanations, and scoring logic.
 - If the product clearly matches AI 陪伴, AI Agent, AI 视频/图片生成, AI 搜索/研究, or AI 编程/DevTool, use `references/product-type-playbooks.md` to adapt questions and evaluation emphasis.
+- If writing section 9, 10, 11, or any technical reverse-engineering content, use `references/technical-inference.md` to keep Workflow/Agent/Multi-Agent/RAG/model-routing claims confidence-labeled and evidence-bounded.
 - Do not mention reference file names in the final Feishu document unless the user asks how the skill was constructed.
 
 Before writing to Feishu, check the architecture diagrams:
