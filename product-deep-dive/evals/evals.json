@@ -70,6 +70,11 @@
       "id": 14,
       "prompt": "我要拆解一个 AI Agent 产品并输出飞书文档，重点看技术层、模型层和产品经理启发。",
       "expected_output": "Use the product-deep-dive workflow and create/update a Feishu document. In section 9 技术层拆解, every major Workflow/Agent/RAG/tool/plugin/prompt inference must include evidence, confidence, validation path, badcase, and product-value impact such as user experience, cost/efficiency, reliability/trust, retention, or monetization. In section 10 模型层拆解, separate borrowed model capability from product-owned value, include model commoditization risk, latency/cost/quality constraints, whether routing is necessary, and how model capability is or is not converted into moat through workflow, data, context, distribution, assets, or UX lock-in. Product-manager insight callouts must include a transferable principle, applicable conditions, non-applicable conditions/risks, and transfer scenarios, not generic slogans."
+    },
+    {
+      "id": 15,
+      "prompt": "我要拆解一个 AI 产品并输出飞书文档，最终架构图和各层小图都必须是可编辑飞书画板，不要静态 SVG 或图片。",
+      "expected_output": "Use the product-deep-dive workflow and create/update a Feishu document. Build the final six-layer architecture diagram and all mini layer diagrams as editable Feishu whiteboards using native/DSL-generated whiteboard nodes, not static PNG/SVG images. Do not use SVG <text>/<tspan> conversion as the source of labels. All labels must be represented as editable text carriers such as text_shape nodes or non-empty shape text fields. After writing, query every architecture whiteboard with lark-cli whiteboard +query --output_as raw and verify the boards contain editable text, have no zero-size image nodes, use no connectors/arrows, and keep the required layer order 市场层, 商业层, 用户层, 应用层, 模型层, 基础层. Export at least the final board and one mini board as preview images and visually inspect readable labels, colors, and layout before final confirmation."
     }
   ]
 }

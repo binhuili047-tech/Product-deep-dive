@@ -24,6 +24,7 @@ See [`CHANGELOG.md`](CHANGELOG.md) for the major changes made during the skill-b
 
 | Version | Focus | What Changed |
 |---|---|---|
+| v2.0 | Native editable whiteboards and senior AIPM gates | Replaced SVG-text conversion with native/DSL whiteboard nodes, added raw-node and preview verification for every architecture board, and consolidated senior AIPM depth checks for key chapters. |
 | v1.5 | Evaluation sub-dimensions | Expanded the testing system with scenario-specific second-level indicators such as end-to-end result, user layer, model/data layer, and technical layer, plus detailed dimension descriptions. |
 | v1.4 | Market competitor analysis | Required section 6 to include a 3+ competitor comparison table and a competitive landscape diagram using product-relevant axes. |
 | v1.3 | Three-layer evaluation framework | Standardized testing around `端到端` black-box output evaluation, `过程能力` glass-box process and decision-path evaluation, and `综合评测` white-box full-process multidimensional evaluation. |
@@ -52,7 +53,7 @@ If `lark-cli auth status` shows no usable user login, authenticate as a user bef
 Optional whiteboard check:
 
 ```powershell
-npx -y @larksuite/whiteboard-cli@^0.2.10 -v
+npx -y @larksuite/whiteboard-cli@^0.2.11 -v
 ```
 
 Without `lark-cli`, the skill can still draft a teardown framework in chat, but it cannot reliably create or update Feishu documents.
@@ -113,7 +114,7 @@ Optional Feishu workflow verification:
 
 ```powershell
 lark-cli docs +create --api-version v2 --help
-npx -y @larksuite/whiteboard-cli@^0.2.10 -v
+npx -y @larksuite/whiteboard-cli@^0.2.11 -v
 ```
 
 Finally, tell the user to restart Codex or Claude Code so the skill index reloads.
@@ -135,7 +136,7 @@ lark-cli docs +create --api-version v2 --help
 For editable architecture whiteboards, also check:
 
 ```powershell
-npx -y @larksuite/whiteboard-cli@^0.2.10 -v
+npx -y @larksuite/whiteboard-cli@^0.2.11 -v
 ```
 
 ### 2. Install the skill
@@ -319,6 +320,8 @@ The final architecture uses six layers:
 
 Each layer can also appear as a mini diagram under its corresponding chapter.
 
+In v2.0, editable architecture diagrams must be built as native Feishu whiteboard nodes or DSL-generated raw nodes. Labels should remain editable text (`text_shape` or shape text), not SVG text converted into images. After writing, the agent must query the raw whiteboard nodes and export previews before confirming delivery.
+
 ### Feishu/Lark Polish
 
 The document formatting rules include:
@@ -350,17 +353,19 @@ Required:
 Optional for editable architecture diagrams:
 
 - Feishu whiteboard node read/write scopes.
-- `@larksuite/whiteboard-cli` for SVG-to-whiteboard conversion.
+- `@larksuite/whiteboard-cli` for DSL/raw whiteboard node conversion and validation.
 
 The preferred architecture diagram flow is:
 
 ```text
 structured architecture
-  -> coordinate-based SVG
-  -> @larksuite/whiteboard-cli OpenAPI nodes
+  -> native/DSL whiteboard nodes
+  -> OpenAPI raw nodes
   -> editable Feishu whiteboard
-  -> verification in the Feishu document
+  -> raw-node + preview verification
 ```
+
+Do not treat a `<whiteboard token=...>` block as sufficient proof. The generated board should have editable text nodes, no zero-size image fragments, no unexpected connectors, and readable preview images.
 
 If Feishu access is unavailable, the skill should still produce a useful draft and list missing delivery steps.
 
@@ -474,7 +479,8 @@ Check:
 
 - The document contains `<whiteboard token=...>` blocks, not image blocks.
 - Feishu whiteboard scopes are granted.
-- SVG diagrams are converted to OpenAPI/raw whiteboard nodes before writing when exact editability is required.
+- Labels are native editable whiteboard text, not SVG text flattened into images.
+- Raw-node queries show no zero-size image fragments, and exported previews render readable labels.
 
 ---
 
@@ -490,6 +496,7 @@ Check:
 
 | 版本 | 重点 | 更新内容 |
 |---|---|---|
+| v2.0 | 原生可编辑画板与资深 AIPM 质量门槛 | 将架构图生成从 SVG 文本转换升级为原生/DSL 飞书画板节点，要求写入后检查 raw 节点、零尺寸图片、可编辑文本和预览图，并沉淀关键章节的资深 AI 产品经理深度规则。 |
 | v1.5 | 评测二级指标细化 | 在三大主维度下增加场景化二级指标要求，例如端到端结果层、用户层、模型数据层、技术层，并要求对每个维度写清楚评什么、为什么重要、怎么评。 |
 | v1.4 | 市场竞品分析增强 | 要求市场层固定加入至少 3 个主要竞品的对比表，并基于产品相关坐标轴绘制竞争格局图。 |
 | v1.3 | 测试评估体系升级 | 将测试场景主维度固定为“端到端、过程能力、综合评测”，从黑盒结果评测扩展到玻璃盒过程/决策路径评测，再到白盒全流程多维综合评估。 |
@@ -546,7 +553,7 @@ lark-cli docs +create --api-version v2 --help
 如需生成可编辑架构画板，建议额外检查：
 
 ```powershell
-npx -y @larksuite/whiteboard-cli@^0.2.10 -v
+npx -y @larksuite/whiteboard-cli@^0.2.11 -v
 ```
 
 ### 安装

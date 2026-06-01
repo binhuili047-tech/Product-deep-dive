@@ -4,6 +4,34 @@ All notable changes to `product-deep-dive` are documented here by version.
 
 本文件按版本记录 `product-deep-dive` 的重要变更。
 
+## v2.0 - Native Editable Whiteboards and Senior AIPM Quality Gates
+
+### Added
+
+- Added a strict Feishu whiteboard generation rule: architecture diagrams must be built with native/DSL-generated whiteboard nodes when editability is required.
+- Added raw-node verification requirements for every created or updated architecture whiteboard:
+  - query each whiteboard after writing
+  - confirm editable text exists through `text_shape` nodes or non-empty shape text
+  - confirm zero-size image fragments are not present
+  - confirm no connectors/arrows are used in static architecture boards
+  - export and visually inspect at least the final board and one mini board
+- Added an explicit failure pattern for SVG text conversion:
+  - symptom: `<whiteboard token=...>` exists but labels disappear or raw query shows `image` nodes with width/height `0`
+  - cause: SVG `<text>`/`<tspan>` was converted into non-editable or invisible image fragments
+  - fix: regenerate with native whiteboard text nodes and overwrite the whiteboard token
+- Added a new eval covering editable Feishu whiteboard delivery, mini diagrams, final six-layer architecture diagrams, and post-write verification.
+
+### Changed
+
+- Upgraded the whiteboard delivery workflow from `coordinate-based SVG -> SVG conversion -> raw nodes` to `native/DSL whiteboard structure -> raw editable nodes -> verified Feishu whiteboard`.
+- Clarified that a `<whiteboard token=...>` block is not enough; the board must be visually correct and structurally editable.
+- Updated architecture verification so the final document is checked for both content quality and visual/editable correctness.
+- Consolidated the v2 senior AIPM depth gates developed during local BMAD/GSD-style improvement:
+  - chapter contract checks
+  - technical/model inference confidence checks
+  - output-quality examples and anti-examples
+  - P0/P1/P2 depth rules for positioning, differentiation, business, technical, model, foundation, and product-manager insight sections
+
 ## v1.5 - Evaluation Sub-Dimensions and Dimension Explanations
 
 ### Added

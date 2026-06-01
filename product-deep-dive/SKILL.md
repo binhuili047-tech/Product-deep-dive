@@ -484,7 +484,7 @@ For the final architecture diagram, prefer an editable Feishu whiteboard over a 
 - Reference topology: 用户层 uses `核心功能`; 应用层 uses `Agent` plus `Tools`; 模型层 uses generation and interaction/evaluation model groups; 基础层 uses `知识库` plus `数据`. Extend the same grammar to 市场层 and 商业层.
 - No edges: the final architecture diagram must not contain arrows or connector lines. Do not use `-->`, `-.->`, `~~~`, or other Mermaid links in the architecture diagram.
 
-Use this canonical six-layer vertical reference template as the semantic target and adapt module names to the concrete product. When exact layout matters, implement it as a coordinate-based SVG, convert it to editable Feishu whiteboard OpenAPI nodes, and write it into the document. Mermaid may be used only as a temporary seed block or fallback. This template is the target layout:
+Use this canonical six-layer vertical reference template as the semantic target and adapt module names to the concrete product. When exact layout matters, implement it as Feishu whiteboard native nodes or DSL that produces shape/text nodes directly. Mermaid may be used only as a temporary seed block or fallback. This template is the target layout:
 
 ```mermaid
 flowchart TB
@@ -731,7 +731,7 @@ Keep the diagram spacious:
 - Put the layer name on the far left of every band. Put exactly two second-level module groups to the right whenever possible, such as `核心功能 | 用户路径`, `Agent / Workflow | Tools`, `生成模型 | 路由与评估`, or `知识库 | 数据`.
 - Within each module group, place child modules left-to-right. If multiple rows are needed, create row subgroups inside the module group.
 - Do not add Mermaid edges only to force layout. The final architecture diagram should be a static architecture board, not a flowchart.
-- Use SVG/whiteboard styling or Mermaid `classDef` styles to create a multi-color diagram. Do not leave all layers in the same color.
+- Use whiteboard styling or Mermaid `classDef` styles to create a multi-color diagram. Do not leave all layers in the same color.
 - Use tables before or after the diagram for detailed explanation instead of overloading the diagram.
 
 ## Per-Layer Architecture Diagrams
@@ -776,13 +776,20 @@ Architecture diagrams should be editable Feishu whiteboards whenever whiteboard 
 Preferred build path:
 
 1. Draft the diagram structure from the six-layer model: 市场层, 商业层, 用户层, 应用层, 模型层, 基础层.
-2. Generate a coordinate-based SVG for reliable layout. Use colored layer backgrounds, white second-level group boxes, rounded child module rectangles, readable text, balanced spacing, and no connectors.
-3. Convert the SVG to Feishu whiteboard OpenAPI raw nodes:
-   `npx -y @larksuite/whiteboard-cli@^0.2.10 -i <diagram.svg> -f svg -t openapi -o <diagram.openapi.json>`
-4. Run the whiteboard CLI check before writing:
-   `npx -y @larksuite/whiteboard-cli@^0.2.10 -i <diagram.svg> -f svg --check`
-5. Write the raw nodes into Feishu:
+2. Build a whiteboard DSL or raw OpenAPI node structure directly. Use colored layer background shapes, white second-level group boxes, rounded child module rectangles, readable labels, balanced spacing, and no connectors.
+3. Put all visible text into editable whiteboard text carriers: `text_shape` nodes or non-empty shape `text` fields. Do not rely on SVG `<text>` or `<tspan>` conversion for module labels.
+4. Convert the DSL to Feishu whiteboard OpenAPI raw nodes when using `@larksuite/whiteboard-cli`, or produce raw nodes directly from a local generator:
+   `npx -y @larksuite/whiteboard-cli@^0.2.11 -i <diagram.dsl.json> -f dsl -t openapi -o <diagram.openapi.json>`
+5. Run the whiteboard CLI check before writing when a CLI-supported source format is used:
+   `npx -y @larksuite/whiteboard-cli@^0.2.11 -i <diagram.dsl.json> -f dsl --check`
+6. Write the raw nodes into Feishu:
    `lark-cli whiteboard +update --whiteboard-token <token> --input_format raw --source @<diagram.openapi.json> --overwrite`
+
+Strict text/editability rule:
+
+- Do not use SVG `<text>`/`<tspan>` as the source of labels for editable Feishu architecture boards. In practice, SVG text can be converted into invisible or zero-size image fragments instead of editable text.
+- SVG may be used only for non-text geometry or as a temporary visual sketch. Before Feishu delivery, redraw labels as native whiteboard text nodes or shape text.
+- A whiteboard token alone is not proof of success. The raw whiteboard node structure must contain editable text carriers and must not hide labels inside zero-size image nodes.
 
 When the target document already contains a whiteboard block, reuse its `block_token` as the whiteboard token and overwrite that whiteboard's nodes.
 
@@ -790,7 +797,7 @@ When the target document has no whiteboard block yet:
 
 1. Insert or replace a placeholder with a minimal Mermaid whiteboard block using `lark-cli docs +update --api-version v2 --doc <doc> --command block_replace ... --doc-format markdown --content @<seed.md>`, or create the new document with a temporary Mermaid block.
 2. Read the returned `new_blocks` and capture the new whiteboard `block_token`.
-3. Immediately overwrite that whiteboard with the SVG-converted OpenAPI raw nodes.
+3. Immediately overwrite that whiteboard with native/DSL-generated OpenAPI raw nodes.
 
 When replacing an old PNG/static architecture image, replace the image block with a temporary whiteboard block first, then overwrite the new whiteboard token with raw editable nodes.
 
@@ -801,13 +808,22 @@ Permission recovery:
 - Show the URL/QR to the user, wait for the user to say they have completed login, then finish with `lark-cli auth login --device-code <device_code>`.
 - Retry the whiteboard write after auth succeeds.
 
+Known failure pattern and fix:
+
+- Symptom: the Feishu document contains `<whiteboard token=...>` blocks, but the board looks blank, labels are missing, or raw query shows many `image` nodes with width/height `0`.
+- Cause: SVG text was converted as image fragments rather than editable whiteboard text.
+- Fix: discard the SVG-text conversion output and regenerate the board as native whiteboard shapes plus `text_shape`/shape text nodes. Then overwrite the affected whiteboard tokens and re-query them.
+
 Verification after writing:
 
 - Fetch or inspect the Feishu document and confirm the diagram positions are `<whiteboard token=...>` blocks, not `<img ...>` blocks.
-- Query at least one mini diagram and the final diagram with `lark-cli whiteboard +query --whiteboard-token <token> --output_as raw --format json`.
-- Confirm nodes exist. A final six-layer architecture should usually have a substantial node count; a mini layer diagram should have enough shapes/text nodes to be editable rather than a single embedded image.
+- Query every created or updated architecture whiteboard with `lark-cli whiteboard +query --whiteboard-token <token> --output_as raw --format json`.
+- Confirm nodes exist. A final six-layer architecture should usually have a substantial node count, often 100+ nodes when all six layers and labels are editable; a mini layer diagram should usually have 20+ nodes.
+- Confirm `Images=0` for architecture boards, or at minimum `ZeroImages=0` when non-text decorative images are explicitly used.
+- Confirm `TextShapes > 0` or `NonEmptyShapeText > 0`; the labels must be represented as editable text, not flattened into images.
 - Confirm the source contains no connectors/arrows unless the user explicitly asks for a flow diagram.
-- If the whiteboard CLI check reports text overflow, overlap, or blank rendering, adjust SVG dimensions, text size, or module spacing and reconvert before updating Feishu.
+- Export at least the final board and one mini board as preview images with `lark-cli whiteboard +query --whiteboard-token <token> --output_as image --output <file> --overwrite --format json`, then visually inspect that labels, colors, and layer order render correctly.
+- If the whiteboard CLI check or preview shows text overflow, overlap, blank rendering, or missing labels, adjust node dimensions, text size, or module spacing and rewrite Feishu before final delivery.
 
 Before writing to Feishu, check reference-module application:
 
@@ -844,6 +860,7 @@ Before writing to Feishu, check the architecture diagrams:
 - The six layer sections and their mini diagrams appear in the document's normal vertical reading order, not in a horizontal grid.
 - Every architecture diagram has no arrows or connector lines.
 - Mini diagrams and final diagram use consistent naming and colors.
+- Every written architecture whiteboard passes raw-node verification: no zero-size text images, editable text carriers exist, and preview images render readable labels.
 
 Before writing to Feishu, check the tables:
 
@@ -895,7 +912,9 @@ Include only useful missing inputs:
 - Do not leave architecture diagrams as PNG/static SVG images when editable Feishu whiteboard node writing is available.
 - Do not replace a whiteboard with SVG/Markdown and assume it is editable; verify the document contains `<whiteboard token=...>` blocks and query the whiteboard nodes.
 - Do not skip the whiteboard OAuth recovery path when `board:whiteboard:node:create` or `board:whiteboard:node:read` scopes are missing.
-- Do not rely on Mermaid auto-layout for the final architecture when the user requested strict layer layout; use coordinate-based SVG converted to editable whiteboard nodes.
+- Do not rely on Mermaid auto-layout for the final architecture when the user requested strict layer layout; use coordinate-based native whiteboard/DSL nodes.
+- Do not use SVG `<text>`/`<tspan>` conversion for editable architecture labels. It can create zero-size image nodes and blank boards.
+- Do not treat the existence of a `<whiteboard token=...>` block as final validation. Query raw nodes and export previews before saying the document is done.
 - Do not color only the small modules; each layer background should also have its own color.
 - Do not omit the layer names; every layer label on the far left must visibly be 市场层, 商业层, 用户层, 应用层, 模型层, or 基础层.
 - Do not use Mermaid links such as `-->`, `-.->`, or `~~~` in the architecture diagram.
