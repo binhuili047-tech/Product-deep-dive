@@ -68,11 +68,11 @@ Every numbered section must include:
 |---|---|
 | Purpose | Explain how the product differs from market convention and why that difference matters. |
 | Inputs | Competitor info, product flows, pricing, feature set, public positioning, user reviews. |
-| Analysis Actions | Compare mental model, workflow, distribution, business model, and capability boundaries; identify non-obvious choices. |
-| Required Outputs | Differentiation table, industry convention broken, reason for choice, copyability assessment. |
+| Analysis Actions | Compare mental model, workflow, distribution, business model, cost structure, data/context accumulation, and capability boundaries; classify differentiation as surface, structural, or strategic. |
+| Required Outputs | Differentiation table with `表层差异`, `结构差异`, and `战略差异`; industry convention broken; reason for choice; why it may work; copyability assessment. |
 | Evidence Rules | Keep competitor claims traceable; mark strategic interpretation as judgment. |
-| Acceptance Criteria | The reader understands whether differentiation is real user value or marketing language. |
-| Failure Modes | Listing features as differentiation without explaining user impact. |
+| Acceptance Criteria | The reader understands whether differentiation is real user value, structural advantage, or strategic choice, and which parts are easy to copy versus hard to copy. |
+| Failure Modes | Listing features as differentiation without explaining user impact; ignoring distribution, business, cost, data, or workflow differences. |
 
 ## 5. 能力边界
 
@@ -126,25 +126,25 @@ Every numbered section must include:
 
 | Field | Contract |
 |---|---|
-| Purpose | Reverse-engineer visible workflow, tools, agents, orchestration, and integration logic. |
+| Purpose | Reverse-engineer visible workflow, tools, agents, orchestration, and integration logic, then explain how those technical choices affect product value. |
 | Inputs | User-visible steps, latency, outputs, error messages, docs, API/integration pages, app behavior. |
-| Analysis Actions | Infer workflow vs single agent vs multi-agent; identify tools, state objects, RAG, external plugins, preprocessing/postprocessing, badcases. |
-| Required Outputs | Technical inference table, confidence level, workflow/agent hypothesis, badcase analysis. |
+| Analysis Actions | Infer workflow vs single agent vs multi-agent; identify tools, state objects, RAG, external plugins, preprocessing/postprocessing, badcases; connect each inference to user experience, cost, reliability, retention, or monetization. |
+| Required Outputs | Technical inference table, confidence level, workflow/agent hypothesis, product-value impact, badcase analysis. |
 | Evidence Rules | Never present inferred architecture as fact; attach confidence and evidence basis. |
-| Acceptance Criteria | The reader can see a plausible system design without confusing it for confirmed implementation. |
-| Failure Modes | Overclaiming Agent/RAG/Multi-Agent without evidence. |
+| Acceptance Criteria | The reader can see a plausible system design without confusing it for confirmed implementation, and can understand why the inferred mechanism matters to users or the business. |
+| Failure Modes | Overclaiming Agent/RAG/Multi-Agent without evidence; describing architecture without explaining product value or operational trade-off. |
 
 ## 10. 模型层拆解
 
 | Field | Contract |
 |---|---|
-| Purpose | Explain model capability matching, routing, and task specialization. |
+| Purpose | Explain model capability matching, routing, task specialization, and whether model capability becomes product-owned value or remains commodity infrastructure. |
 | Inputs | Output types, latency, quality patterns, model disclosures, pricing, release notes, failure cases. |
-| Analysis Actions | Infer model families, routing strategy, task-to-model mapping, capability bottlenecks, uncertainty around model choices. |
-| Required Outputs | Model routing hypothesis, capability fit table, model-layer risks, pending validation. |
+| Analysis Actions | Infer model families, routing strategy, task-to-model mapping, capability bottlenecks, uncertainty around model choices, latency/cost/quality constraints, and model commoditization risk. |
+| Required Outputs | Model routing hypothesis, capability fit table, model capability vs product-owned value, model commoditization risk, latency/cost/quality constraints, pending validation. |
 | Evidence Rules | Official model claims are facts; model inference is judgment or `待验证`. |
-| Acceptance Criteria | The chapter explains why certain model capabilities are required and how they may be orchestrated. |
-| Failure Modes | Treating one product output as proof of a specific model. |
+| Acceptance Criteria | The chapter explains why certain model capabilities are required, whether routing is necessary, and how the product does or does not convert model capability into moat through workflow, data, context, distribution, assets, or UX lock-in. |
+| Failure Modes | Treating one product output as proof of a specific model; mistaking borrowed model capability for durable product advantage. |
 
 ## 11. 不确定性处理
 

@@ -11,6 +11,7 @@ Every technical inference should answer:
 - `看到什么`: visible product behavior, public documentation, error message, UI state, latency pattern, output pattern, or official disclosure.
 - `推测什么`: the likely workflow, component, model capability, tool, state object, or data process.
 - `为什么这么推`: reasoning chain from visible evidence to inference.
+- `产品价值影响`: how the inferred mechanism changes user experience, cost/efficiency, reliability/trust, retention, or monetization.
 - `置信度`: high / medium / low.
 - `如何验证`: the next test, source, screenshot, network trace, docs, or interview needed to confirm it.
 
@@ -39,12 +40,26 @@ Never use high confidence only because a product is in an AI category. Category 
 For technical and model-layer reverse engineering, prefer this table:
 
 ```markdown
-| 推测对象 | 看到什么 | 可能机制 | 置信度 | 为什么这么推 | 如何验证 | 风险/Badcase |
-|---|---|---|---|---|---|---|
-| Workflow / Agent | ... | ... | 中 | ... | ... | ... |
-| RAG / 数据 grounding | ... | ... | 低 | ... | ... | ... |
-| 模型路由 | ... | ... | 中 | ... | ... | ... |
+| 推测对象 | 看到什么 | 可能机制 | 产品价值影响 | 置信度 | 为什么这么推 | 如何验证 | 风险/Badcase |
+|---|---|---|---|---|---|---|---|
+| Workflow / Agent | ... | ... | ... | 中 | ... | ... | ... |
+| RAG / 数据 grounding | ... | ... | ... | 低 | ... | ... | ... |
+| 模型路由 | ... | ... | ... | 中 | ... | ... | ... |
 ```
+
+## Product Value Impact
+
+Reverse engineering is incomplete if it only names architecture. A senior AIPM teardown must explain why the inferred mechanism matters to the product.
+
+For every important technical inference, add product-value impact:
+
+| 技术机制 | 影响用户体验 | 影响成本/效率 | 影响可靠性/信任 | 影响留存/商业化 | 置信度 |
+|---|---|---|---|---|---|
+| Workflow / pipeline | Does it shorten time-to-value, make progress legible, or constrain complex tasks? | Does it reduce repeated model calls or increase orchestration overhead? | Does it make failures recoverable or hide failure causes? | Does it support repeatable jobs, templates, or paid advanced flows? | 中 |
+| RAG / grounding | Does it improve factuality, personalization, or controllability? | Does retrieval add latency/storage cost? | Are sources visible enough to build trust? | Does uploaded knowledge create switching cost or enterprise value? | 低-中 |
+| Model routing | Does it match tasks to the right output quality and modality? | Does it lower average cost or introduce routing overhead? | Can wrong routing cause inconsistent quality? | Does tiered quality support pricing, credits, or upsell? | 中 |
+
+If no product-value impact can be articulated, either the inference is not important enough for the teardown or the analysis is still too technical and not product-manager useful.
 
 ## Workflow vs Agent vs Multi-Agent
 
@@ -90,6 +105,26 @@ Model routing is often invisible. Use cautious language.
 | No visible evidence | Unknown | Low |
 
 Avoid naming a specific proprietary model unless the product or provider discloses it.
+
+## Model Commoditization and Product Moat
+
+Model capability is often borrowed infrastructure. Do not treat strong model output as product moat unless the product converts it into owned value.
+
+Ask:
+
+- Is the capability external commodity model performance, or something the product owns through workflow, data, context, distribution, assets, community, integrations, or UX lock-in?
+- If the underlying model improves for everyone, does the product's advantage expand, stay flat, or disappear?
+- Does the product accumulate user projects, preferences, style libraries, prompt assets, evaluation data, or feedback that improves the next experience?
+- Does model routing reduce cost/latency enough to create pricing flexibility or better margins?
+- Could a platform owner, foundation model provider, or distribution channel copy the core experience quickly?
+
+Use this table when writing model-layer judgment:
+
+```markdown
+| 模型能力 | 产品如何使用 | 是否商品化风险 | 产品自有价值 | 护城河强度 | 待验证 |
+|---|---|---|---|---|---|
+| 意图理解 | ... | 高/中/低 | Workflow / 数据 / 分发 / 资产 / 社区 / 无明显自有价值 | 强/中/弱 | ... |
+```
 
 ## Prompt Reconstruction Rules
 
@@ -146,9 +181,9 @@ Use this structure when the section contains non-trivial technical inference:
 ### 技术反推总览
 一句话说明：这是事实、观察、推测还是判断混合分析。
 
-| 推测对象 | 看到什么 | 可能机制 | 置信度 | 为什么这么推 | 如何验证 | 风险/Badcase |
-|---|---|---|---|---|---|---|
-| ... | ... | ... | 中 | ... | ... | ... |
+| 推测对象 | 看到什么 | 可能机制 | 产品价值影响 | 置信度 | 为什么这么推 | 如何验证 | 风险/Badcase |
+|---|---|---|---|---|---|---|---|
+| ... | ... | ... | ... | 中 | ... | ... | ... |
 
 ### 关键判断
 - 较高置信：
@@ -162,5 +197,7 @@ Use this structure when the section contains non-trivial technical inference:
 - Calling any factual answer `RAG` without source grounding evidence.
 - Naming a specific model without official disclosure.
 - Presenting prompt reconstruction as real internal prompt.
+- Treating model capability as product moat without explaining owned workflow, data, context, distribution, assets, or UX lock-in.
+- Describing a technical mechanism without explaining its product-value impact.
 - Ignoring badcases after proposing a plausible architecture.
 - Omitting `如何验证`, which leaves the reader with no way to close the evidence gap.

@@ -23,6 +23,7 @@ Default target: L3 for normal drafts, L4 for deep teardowns with enough evidence
 - Identify what the product refuses to do and why that may be strategic.
 - Connect market, business, user path, model/data, and technical architecture.
 - Make product-manager lessons specific enough to reuse.
+- Give product-manager lessons an applicability boundary: when it works, when it fails, and where it transfers.
 - Name uncertainty instead of hiding it.
 
 ## What It Must Avoid
@@ -187,11 +188,11 @@ Why it fails:
 ```markdown
 从可见体验看，它更像是“固定 Workflow + Tool-Using Assistant”的组合，而不是可以高置信判断为 Multi-Agent。原因是用户路径呈现出明确的阶段：输入意图 -> 生成候选 -> 编辑/重试 -> 导出；但目前没有看到多个专门角色、并行子任务或明确 handoff 的证据。
 
-| 推测对象 | 看到什么 | 可能机制 | 置信度 | 为什么这么推 | 如何验证 | 风险/Badcase |
-|---|---|---|---|---|---|---|
-| Workflow | 体验路径呈现固定阶段 | 预设生成管线 | 中 | 多次任务都按相似步骤推进 | 测试不同输入是否仍走同一阶段 | 复杂任务可能被固定流程限制 |
-| RAG / 数据 grounding | 暂未看到引用、知识库或上传检索证据 | 可能只是上下文注入 | 低 | 缺少 source/citation/KB 配置证据 | 测试文档上传和引用一致性 | 幻觉或事实错误难以追踪 |
-| 模型路由 | 不同生成类型可能有不同等待时间 | 可能存在任务级模型选择 | 低-中 | 只有延迟差异，缺少官方说明 | 查看官方模型披露或多任务质量差异 | 错路由导致质量不稳定或成本过高 |
+| 推测对象 | 看到什么 | 可能机制 | 产品价值影响 | 置信度 | 为什么这么推 | 如何验证 | 风险/Badcase |
+|---|---|---|---|---|---|---|---|
+| Workflow | 体验路径呈现固定阶段 | 预设生成管线 | 降低首次完成门槛，但可能牺牲复杂任务自由度 | 中 | 多次任务都按相似步骤推进 | 测试不同输入是否仍走同一阶段 | 复杂任务可能被固定流程限制 |
+| RAG / 数据 grounding | 暂未看到引用、知识库或上传检索证据 | 可能只是上下文注入 | 若不能稳定 grounding，信任和专业场景扩展会受限 | 低 | 缺少 source/citation/KB 配置证据 | 测试文档上传和引用一致性 | 幻觉或事实错误难以追踪 |
+| 模型路由 | 不同生成类型可能有不同等待时间 | 可能存在任务级模型选择 | 可能在质量、延迟和成本之间做权衡，但错路由会伤害体验一致性 | 低-中 | 只有延迟差异，缺少官方说明 | 查看官方模型披露或多任务质量差异 | 错路由导致质量不稳定或成本过高 |
 ```
 
 Why it works:
@@ -200,6 +201,7 @@ Why it works:
 - Uses confidence.
 - Gives verification paths.
 - Includes badcases.
+- Connects architecture to user value and business trade-offs.
 
 ### 10. 模型层拆解
 
@@ -221,6 +223,8 @@ Why it fails:
 目前不能确认具体底层模型，因此模型层更适合按“能力需求”而不是“模型名称”拆解。该产品至少需要三类能力：意图理解、生成执行、质量评估/重写。若产品支持图片、视频或语音，还需要额外的多模态生成与后处理能力。
 
 高价值判断不是“它用了哪个模型”，而是“它是否把不同任务分给了合适的能力模块”。如果所有任务都依赖同一通用模型，产品会更简单但质量波动较大；如果存在任务级路由，产品可能在成本和质量之间做了更精细的权衡，但也会引入路由错误和一致性问题。
+
+模型层的护城河不能只来自“生成效果好”，因为底层模型能力会持续商品化。更关键的是产品是否把模型能力转成自有资产：例如用户项目、角色记忆、风格库、工作流模板、反馈数据、分发关系或团队协作上下文。如果这些都没有沉淀，模型能力越强，反而越容易被大模型平台和通用入口平替。
 ```
 
 Why it works:
@@ -228,6 +232,7 @@ Why it works:
 - Avoids unsupported model naming.
 - Uses model-capability mapping.
 - Explains trade-off.
+- Separates borrowed model capability from product-owned value.
 
 ### 产品经理启发
 
@@ -251,13 +256,28 @@ Why it fails:
 这个产品真正值得学习的不是“用了 AI 生成”，而是它把不稳定的模型能力包装成了一个可被用户理解和反复尝试的工作流。对 AI PM 来说，关键不是让模型一次生成完美结果，而是设计一个能承接失败、鼓励迭代、保留用户控制感的过程。
 
 可迁移原则：当底层能力不稳定时，产品设计要把“不确定性”变成可操作的步骤，例如候选结果、局部编辑、风格锁定、历史版本、失败恢复和可解释等待。
+
+适用条件：用户愿意通过多轮迭代换取更好结果，且任务本身允许候选、修改和回退。
+
+不适用条件/风险：如果任务要求一次性高确定性输出，例如金融审批、医疗建议或强合规工作流，过度依赖“让用户继续试”会把模型风险转嫁给用户。
+
+可迁移场景：AI 创作、AI 设计、AI 写作、Agent 工作流配置、低代码自动化等需要把模型不确定性产品化的场景。
 ```
 
 Why it works:
 
 - Insight comes from product behavior.
 - Names a product design mechanism.
-- Offers a reusable principle.
+- Offers a reusable principle with applicability, risk, and transfer scenarios.
+
+## Insight Applicability Check
+
+Every `产品经理启发` block should include:
+
+- `可迁移原则`: what principle can other AI PMs reuse?
+- `适用条件`: under what product/user/task conditions does it work?
+- `不适用条件/风险`: when would this lesson be misleading or dangerous?
+- `可迁移场景`: which adjacent product types can reuse it?
 
 ## Senior AIPM Self-Check
 
@@ -269,7 +289,7 @@ Before final delivery, ask:
 - Does the evaluation table explain scoring logic?
 - Does market analysis include roles, channels, business models, and latest public signals?
 - Does technical inference include confidence and validation paths?
-- Are product-manager insights specific, transferable, and grounded in the analyzed product?
+- Are product-manager insights specific, transferable, grounded in the analyzed product, and explicit about applicability/risk?
 
 ## Pressure-Test Prompts
 
