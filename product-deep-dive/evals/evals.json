@@ -50,6 +50,16 @@
       "id": 10,
       "prompt": "帮我拆解一个 AI Agent 产品，重点要有产品经理启发，最终输出飞书文档。",
       "expected_output": "Generate the full Feishu-style teardown and ensure every numbered section ends with a Feishu callout/highlight block for 产品经理启发. The insights must be senior-AIPM quality: specific, derived from the analyzed product behavior, connected to user value or product trade-offs, and transferable as a design principle. Do not use generic slogans such as AI 产品要重视体验 or 要降低门槛. Technical and model insights should include evidence boundaries and confidence when they depend on inference."
+    },
+    {
+      "id": 11,
+      "prompt": "帮我拆解一个新的 AI 创作产品并输出飞书文档，产品定位这一章一定要写深。",
+      "expected_output": "Use the product-deep-dive workflow and create/update a Feishu document. In section 1 产品定位与体验总结, do not stop at one-sentence positioning, core users, and scenarios. Include anti-positioning, non-core users, substitutes users would otherwise use, and positioning assumptions that must remain true. The analysis should explain what the product intentionally refuses to become and why that strategic narrowing supports the first experience or market entry."
+    },
+    {
+      "id": 12,
+      "prompt": "我要拆解一个 AI 产品，特别关注商业层和基础层是否真的有长期价值，输出飞书文档。",
+      "expected_output": "Use the product-deep-dive workflow and create/update a Feishu document. In section 7 商业层拆解, include growth loop, retention mechanism, payment trigger, unit economics hypothesis, cost drivers, margin pressure, supply-demand logic, and moat evidence strength instead of only listing subscription or ads. In section 12 基础层拆解, explain what data/assets/context are accumulated, how accumulation improves the next experience, whether users have reason to keep feeding the product data, whether this creates switching cost or a real data flywheel, and what compliance/copyright constraints remain 待验证."
     }
   ]
 }

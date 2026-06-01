@@ -32,11 +32,11 @@ Every numbered section must include:
 |---|---|
 | Purpose | Explain what the product is, whom it serves, and why the first experience matters. |
 | Inputs | Official website, product intro, onboarding, first-run flow, app store copy, user-provided screenshots. |
-| Analysis Actions | Compress product positioning into one sentence; identify core user; map primary use scenarios; identify the product's promised value and hidden trade-offs. |
-| Required Outputs | One-sentence positioning, core user, usage scenarios, first-experience summary, strongest/weakest experience points. |
+| Analysis Actions | Compress product positioning into one sentence; identify core user; map primary use scenarios; identify the product's promised value, hidden trade-offs, anti-positioning, substitutes, and positioning assumptions. |
+| Required Outputs | One-sentence positioning, anti-positioning, core user, non-core user, substitutes, usage scenarios, positioning assumptions, first-experience summary, strongest/weakest experience points. |
 | Evidence Rules | Use official wording only when visible; infer target users from entry points and feature emphasis. |
-| Acceptance Criteria | A reader can tell who the product is for, what job it solves, and why its experience design is coherent or not. |
-| Failure Modes | Generic category labels, vague users such as “everyone”, or feature lists without positioning judgment. |
+| Acceptance Criteria | A reader can tell who the product is for, who it intentionally avoids, what users would otherwise use, what job it solves, and what must be true for this positioning to remain defensible. |
+| Failure Modes | Generic category labels, vague users such as “everyone”, feature lists without positioning judgment, or positioning that never explains what the product refuses to become. |
 
 ## 2. 测试评估体系
 
@@ -104,11 +104,11 @@ Every numbered section must include:
 |---|---|
 | Purpose | Explain why the product can grow, retain, and monetize. |
 | Inputs | Pricing, plans, app store monetization, public metrics, funding, community, traffic sources, observed paywalls. |
-| Analysis Actions | Map growth loop, retention mechanism, monetization path, cost structure, channel leverage, supply-demand relationship, moat. |
-| Required Outputs | Growth-retention-monetization analysis, cost drivers, moat assessment, business risk. |
+| Analysis Actions | Map growth loop, retention mechanism, monetization path, payment trigger, unit economics, cost structure, channel leverage, supply-demand relationship, and moat evidence. |
+| Required Outputs | Growth-retention-monetization analysis, payment trigger, unit economics hypothesis, cost drivers, margin pressure, supply-demand logic, moat evidence strength, business risk. |
 | Evidence Rules | Mark revenue/funding/usage metrics as fact only when sourced. |
-| Acceptance Criteria | The chapter explains why the product can or cannot become a sustainable business. |
-| Failure Modes | Saying “subscription” without explaining willingness to pay or cost structure. |
+| Acceptance Criteria | The chapter explains why the product can or cannot become a sustainable business, including whether growth, retention, monetization, and cost structure reinforce or fight each other. |
+| Failure Modes | Saying “subscription” without explaining willingness to pay, payment timing, growth loop, retention mechanism, unit economics, or cost structure. |
 
 ## 8. 场景/用户层拆解
 
@@ -164,11 +164,11 @@ Every numbered section must include:
 |---|---|
 | Purpose | Explain context, knowledge, style libraries, data assets, feedback loops, and long-term defensibility. |
 | Inputs | Account/project memory, style presets, templates, asset libraries, feedback mechanisms, docs, data policies. |
-| Analysis Actions | Identify data assets, knowledge bases, context stores, style systems, personalization, feedback loops, and compounding data advantages. |
-| Required Outputs | Foundation-layer map, data/knowledge table, moat or weakness analysis. |
+| Analysis Actions | Identify data assets, knowledge bases, context stores, style systems, personalization, feedback loops, data compounding effects, switching costs, and compliance/copyright constraints. |
+| Required Outputs | Foundation-layer map, data/knowledge table, what gets accumulated, how accumulation improves the next experience, switching-cost analysis, data flywheel judgment, moat or weakness analysis. |
 | Evidence Rules | Treat data moat claims cautiously unless there is visible accumulation or official evidence. |
-| Acceptance Criteria | The reader understands what the product accumulates over time. |
-| Failure Modes | Confusing model capability with product-owned data or context infrastructure. |
+| Acceptance Criteria | The reader understands what the product accumulates over time, why users would keep feeding it data/assets/context, whether that accumulation improves future outputs, and whether it creates real defensibility. |
+| Failure Modes | Confusing model capability with product-owned data or context infrastructure, treating storage as a data moat, or claiming a data flywheel without explaining compounding improvement. |
 
 ## 13. 最终架构图
 
