@@ -4,6 +4,23 @@ All notable changes to `product-deep-dive` are documented here by version.
 
 本文件按版本记录 `product-deep-dive` 的重要变更。
 
+## v1.6 - BMAD Framework Upgrade Brief
+
+### Added
+
+- Added `docs/product-deep-dive-framework-upgrade-brief.md`, a BMAD-style analysis and planning document for improving the framework toward v2.0.
+- The brief includes:
+  - Analyst diagnosis of current strengths and gaps.
+  - Product Manager requirements, priorities, and acceptance criteria.
+  - Architect-level modular structure proposal.
+  - Evaluation rubric expansion plan.
+  - Evals expansion plan.
+  - Implementation backlog for future modularization.
+
+### Changed
+
+- Updated README repository structure and maintenance guidance to point to the BMAD upgrade brief.
+
 ## v1.5 - Evaluation Sub-Dimensions and Dimension Explanations
 
 ### Added

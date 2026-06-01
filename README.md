@@ -400,6 +400,8 @@ Product-deep-dive/
   README.md          # Bilingual project guide
   CHANGELOG.md       # Notable changes and iteration history
   LICENSE            # Repository license
+  docs/
+    product-deep-dive-framework-upgrade-brief.md
   product-deep-dive/
     README.md        # Skill-level guide
     SKILL.md         # Codex / Claude-compatible skill instructions
@@ -827,6 +829,7 @@ Product-deep-dive/
 - `CONTRIBUTING.md`
 - 示例飞书文档截图或公开 demo 链接
 - 更多 eval cases
+- 根据 [`docs/product-deep-dive-framework-upgrade-brief.md`](docs/product-deep-dive-framework-upgrade-brief.md) 推进 v2.0 模块化升级
 
 ---
 
