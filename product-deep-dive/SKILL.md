@@ -48,6 +48,7 @@ Use the local reference files only when their detail is needed. Do not bulk-load
 - `references/evaluation-rubrics.md`: use when writing section 2 `测试评估体系`, especially when constructing second-level indicators, dimension explanations, weights, and scoring logic.
 - `references/product-type-playbooks.md`: use when adapting the teardown to a specific AI product type such as AI 陪伴, AI Agent, AI 视频/图片生成, AI 搜索/研究, or AI 编程/DevTool.
 - `references/technical-inference.md`: use when reverse-engineering Workflow, Agent, Multi-Agent, RAG, model routing, tools, external plugins, data pipelines, or prompt-like structures.
+- `references/output-quality-examples.md`: use when checking whether key chapters read like senior AIPM analysis rather than generic template filling.
 
 When a reference module conflicts with this `SKILL.md`, the `SKILL.md` trigger discipline, Feishu delivery rules, evidence rules, and final self-check remain authoritative. Treat references as depth modules, not new triggers.
 
@@ -798,6 +799,7 @@ Before writing to Feishu, check reference-module application:
 - If writing section 2 `测试评估体系`, use `references/evaluation-rubrics.md` to verify the three main dimensions, scenario-specific second-level indicators, dimension explanations, and scoring logic.
 - If the product clearly matches AI 陪伴, AI Agent, AI 视频/图片生成, AI 搜索/研究, or AI 编程/DevTool, use `references/product-type-playbooks.md` to adapt questions and evaluation emphasis.
 - If writing section 9, 10, 11, or any technical reverse-engineering content, use `references/technical-inference.md` to keep Workflow/Agent/Multi-Agent/RAG/model-routing claims confidence-labeled and evidence-bounded.
+- If the output includes key chapters such as positioning, evaluation, market, business, technical, model, or product-manager insight, use `references/output-quality-examples.md` as the senior AIPM quality bar and avoid generic L1/L2 template filling.
 - Do not mention reference file names in the final Feishu document unless the user asks how the skill was constructed.
 
 Before writing to Feishu, check the architecture diagrams:

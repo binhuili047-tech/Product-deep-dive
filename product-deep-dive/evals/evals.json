@@ -40,6 +40,16 @@
       "id": 8,
       "prompt": "现在我要拆解一个 AI 陪伴产品，帮我做框架搭建，并输出飞书文档。市场层要认真做。",
       "expected_output": "Use the AI companion product-type emphasis when rewriting questions and evaluation indicators. In section 6 市场层拆解, include at least 3 main competitors and a comparison table with the exact columns 平台/公司, 主要角色, 分发渠道, 核心商业模式, 最新公开信息. Use verifiable public information when available and mark incomplete cells 待验证. Also include a competitive landscape diagram with product-relevant axes and place the analyzed product plus at least 3 competitors. Do not substitute the final six-layer architecture diagram for this section-level competitive landscape diagram."
+    },
+    {
+      "id": 9,
+      "prompt": "直接写一个 AI 产品深度拆解框架，要求像资深 AI 产品经理写的，不要泛泛而谈，输出飞书文档。",
+      "expected_output": "Use the product-deep-dive workflow and create/update a Feishu document. The writing should meet a senior AIPM quality bar: key chapters must contain product judgment, user-job analysis, trade-offs, evidence boundaries, and reusable product lessons rather than generic phrases like AI 赋能, 提升效率, 降低门槛, 体验很好, or 功能丰富 without mechanism. Positioning, evaluation, market, business, technical, model, and product-manager insight sections should avoid L1/L2 template filling and include concrete reasoning tied to the product or, if evidence is missing, clear 待验证 items."
+    },
+    {
+      "id": 10,
+      "prompt": "帮我拆解一个 AI Agent 产品，重点要有产品经理启发，最终输出飞书文档。",
+      "expected_output": "Generate the full Feishu-style teardown and ensure every numbered section ends with a Feishu callout/highlight block for 产品经理启发. The insights must be senior-AIPM quality: specific, derived from the analyzed product behavior, connected to user value or product trade-offs, and transferable as a design principle. Do not use generic slogans such as AI 产品要重视体验 or 要降低门槛. Technical and model insights should include evidence boundaries and confidence when they depend on inference."
     }
   ]
 }

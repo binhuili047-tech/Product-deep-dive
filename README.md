@@ -408,6 +408,7 @@ Product-deep-dive/
       evaluation-rubrics.md
       product-type-playbooks.md
       technical-inference.md
+      output-quality-examples.md
     evals/
       evals.json     # Skill evaluation cases
   ```
@@ -832,7 +833,7 @@ Product-deep-dive/
 - `CONTRIBUTING.md`
 - 示例飞书文档截图或公开 demo 链接
 - 更多 eval cases
-- 更多 `references/` 模块，例如 Feishu formatting、whiteboard architecture、output-quality examples
+- 更多 `references/` 模块，例如 Feishu formatting、whiteboard architecture
 
 ---
 
