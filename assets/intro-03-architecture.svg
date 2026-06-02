@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <filter id="paperNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.76" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.055"/></feComponentTransfer>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#7a4b2c" flood-opacity="0.16"/>
+    </filter>
+    <style>
+      .bg { fill: #f7f1e7; }
+      .rust { fill: #b6542d; }
+      .ink { fill: #202124; }
+      .muted { fill: #5f5a52; }
+      .card { fill: #fbf7ee; stroke: #dfd4c4; stroke-width: 1.4; }
+      .line { stroke: #c25d31; stroke-width: 3; fill: none; stroke-linecap: round; }
+      .thin { stroke: #c7b7a4; stroke-width: 1.5; fill: none; }
+      .sans { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", "SimSun", serif; }
+      .titleRust { font-size: 76px; font-weight: 800; }
+      .titleInk { font-size: 92px; font-weight: 900; }
+      .sub { font-size: 28px; font-weight: 700; }
+      .body { font-size: 20px; }
+      .small { font-size: 15px; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="900"/>
+  <rect width="1600" height="900" filter="url(#paperNoise)" opacity="0.55"/>
+
+  <g transform="translate(58 78)">
+    <text class="serif rust titleRust" x="0" y="0" dominant-baseline="hanging">从体验反推系统，</text>
+    <text class="serif ink titleInk" x="0" y="104" dominant-baseline="hanging">沉淀六层架构画板</text>
+    <text class="serif rust sub" x="0" y="270">可编辑飞书白板</text>
+    <text class="sans ink sub" x="260" y="270">：市场 / 商业 / 用户 / 应用 / 模型 / 基础</text>
+  </g>
+
+  <g transform="translate(70 350)" filter="url(#softShadow)">
+    <rect class="card" x="0" y="0" width="900" height="430" rx="14"/>
+    <g transform="translate(28 26)">
+      <rect x="0" y="0" width="844" height="56" rx="10" fill="#e2f6ea" stroke="#2f9e64" stroke-width="2"/>
+      <text class="sans ink" x="28" y="36" font-size="22" font-weight="800">市场层</text>
+      <rect x="138" y="12" width="320" height="32" rx="7" fill="#fff" stroke="#2f9e64"/>
+      <text class="sans muted" x="298" y="34" text-anchor="middle" font-size="15">赛道与机会</text>
+      <rect x="484" y="12" width="320" height="32" rx="7" fill="#fff" stroke="#2f9e64"/>
+      <text class="sans muted" x="644" y="34" text-anchor="middle" font-size="15">竞争与约束</text>
+
+      <rect x="0" y="66" width="844" height="56" rx="10" fill="#fff0c8" stroke="#d79b20" stroke-width="2"/>
+      <text class="sans ink" x="28" y="102" font-size="22" font-weight="800">商业层</text>
+      <rect x="138" y="78" width="320" height="32" rx="7" fill="#fff" stroke="#d79b20"/>
+      <text class="sans muted" x="298" y="100" text-anchor="middle" font-size="15">增长与留存</text>
+      <rect x="484" y="78" width="320" height="32" rx="7" fill="#fff" stroke="#d79b20"/>
+      <text class="sans muted" x="644" y="100" text-anchor="middle" font-size="15">变现与成本</text>
+
+      <rect x="0" y="132" width="844" height="56" rx="10" fill="#e4efff" stroke="#4c7deb" stroke-width="2"/>
+      <text class="sans ink" x="28" y="168" font-size="22" font-weight="800">用户层</text>
+      <rect x="138" y="144" width="320" height="32" rx="7" fill="#fff" stroke="#4c7deb"/>
+      <text class="sans muted" x="298" y="166" text-anchor="middle" font-size="15">入口与路径</text>
+      <rect x="484" y="144" width="320" height="32" rx="7" fill="#fff" stroke="#4c7deb"/>
+      <text class="sans muted" x="644" y="166" text-anchor="middle" font-size="15">Aha Moment</text>
+
+      <rect x="0" y="198" width="844" height="56" rx="10" fill="#ffe8d8" stroke="#e27a2d" stroke-width="2"/>
+      <text class="sans ink" x="28" y="234" font-size="22" font-weight="800">应用层</text>
+      <rect x="138" y="210" width="320" height="32" rx="7" fill="#fff" stroke="#e27a2d"/>
+      <text class="sans muted" x="298" y="232" text-anchor="middle" font-size="15">Workflow / Agent</text>
+      <rect x="484" y="210" width="320" height="32" rx="7" fill="#fff" stroke="#e27a2d"/>
+      <text class="sans muted" x="644" y="232" text-anchor="middle" font-size="15">Tools / RAG</text>
+
+      <rect x="0" y="264" width="844" height="56" rx="10" fill="#eee2ff" stroke="#7b61ff" stroke-width="2"/>
+      <text class="sans ink" x="28" y="300" font-size="22" font-weight="800">模型层</text>
+      <rect x="138" y="276" width="320" height="32" rx="7" fill="#fff" stroke="#7b61ff"/>
+      <text class="sans muted" x="298" y="298" text-anchor="middle" font-size="15">模型能力匹配</text>
+      <rect x="484" y="276" width="320" height="32" rx="7" fill="#fff" stroke="#7b61ff"/>
+      <text class="sans muted" x="644" y="298" text-anchor="middle" font-size="15">路由与评估</text>
+
+      <rect x="0" y="330" width="844" height="56" rx="10" fill="#dde6fa" stroke="#536db3" stroke-width="2"/>
+      <text class="sans ink" x="28" y="366" font-size="22" font-weight="800">基础层</text>
+      <rect x="138" y="342" width="320" height="32" rx="7" fill="#fff" stroke="#536db3"/>
+      <text class="sans muted" x="298" y="364" text-anchor="middle" font-size="15">知识库 / 风格库</text>
+      <rect x="484" y="342" width="320" height="32" rx="7" fill="#fff" stroke="#536db3"/>
+      <text class="sans muted" x="644" y="364" text-anchor="middle" font-size="15">数据沉淀 / 反馈</text>
+    </g>
+  </g>
+
+  <g transform="translate(1032 84)">
+    <text class="sans ink body" x="226" y="0" font-weight="800" text-anchor="middle">为什么是画板？</text>
+    <g transform="translate(0 34)" filter="url(#softShadow)">
+      <rect class="card" width="460" height="170" rx="12"/>
+      <text class="serif ink" x="28" y="48" font-size="27" font-weight="800">可编辑，不是截图</text>
+      <text class="sans muted" x="28" y="84" font-size="17">模块、标签、分层都能继续调整</text>
+      <text class="sans rust" x="32" y="132" font-size="18" font-weight="800">显式文本节点 · 预览可见 · Raw 可检索</text>
+    </g>
+
+    <g transform="translate(0 242)" filter="url(#softShadow)">
+      <rect class="card" width="460" height="220" rx="12"/>
+      <text class="serif ink" x="28" y="48" font-size="27" font-weight="800">证据边界</text>
+      <rect x="28" y="74" width="80" height="34" rx="6" fill="#e8e3dc"/>
+      <rect x="118" y="74" width="80" height="34" rx="6" fill="#e8e3dc"/>
+      <rect x="208" y="74" width="80" height="34" rx="6" fill="#e8e3dc"/>
+      <rect x="298" y="74" width="108" height="34" rx="6" fill="#e8e3dc"/>
+      <text class="sans ink" x="68" y="97" text-anchor="middle" font-size="15" font-weight="800">事实</text>
+      <text class="sans ink" x="158" y="97" text-anchor="middle" font-size="15" font-weight="800">观察</text>
+      <text class="sans ink" x="248" y="97" text-anchor="middle" font-size="15" font-weight="800">推测</text>
+      <text class="sans ink" x="352" y="97" text-anchor="middle" font-size="15" font-weight="800">待验证</text>
+      <text class="sans muted" x="28" y="143" font-size="17">技术层和模型层不把反推当事实</text>
+      <text class="sans muted" x="28" y="174" font-size="17">每个判断都留下验证路径和 Badcase</text>
+    </g>
+
+    <g transform="translate(0 500)" filter="url(#softShadow)">
+      <rect class="card" width="460" height="210" rx="12"/>
+      <text class="serif ink" x="28" y="48" font-size="27" font-weight="800">交付前检查</text>
+      <text class="sans muted" x="48" y="92" font-size="17">✓ 13 章完整</text>
+      <text class="sans muted" x="48" y="125" font-size="17">✓ 表格首行首列灰底加粗</text>
+      <text class="sans muted" x="48" y="158" font-size="17">✓ 画板文字真实显示</text>
+      <text class="sans muted" x="48" y="191" font-size="17">✓ 信息缺口清单收尾</text>
+    </g>
+  </g>
+
+  <g transform="translate(70 830)">
+    <path class="thin" d="M0 0 h230"/>
+    <text class="serif ink" x="275" y="12" font-size="28" font-weight="800">把一次产品体验，拆成可复用的产品架构资产</text>
+    <path class="thin" d="M1050 0 h230"/>
+  </g>
+</svg>

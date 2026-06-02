@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <filter id="paperNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.055"/></feComponentTransfer>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#7a4b2c" flood-opacity="0.16"/>
+    </filter>
+    <style>
+      .bg { fill: #f7f1e7; }
+      .rust { fill: #b6542d; }
+      .ink { fill: #202124; }
+      .muted { fill: #5f5a52; }
+      .card { fill: #fbf7ee; stroke: #dfd4c4; stroke-width: 1.4; }
+      .white { fill: #fffaf1; stroke: #e2d4c2; stroke-width: 1.2; }
+      .line { stroke: #c25d31; stroke-width: 3; fill: none; stroke-linecap: round; }
+      .thin { stroke: #c7b7a4; stroke-width: 1.5; fill: none; }
+      .sans { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", "SimSun", serif; }
+      .titleRust { font-size: 76px; font-weight: 800; }
+      .titleInk { font-size: 92px; font-weight: 900; }
+      .sub { font-size: 28px; font-weight: 700; }
+      .body { font-size: 20px; }
+      .small { font-size: 15px; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="900"/>
+  <rect width="1600" height="900" filter="url(#paperNoise)" opacity="0.55"/>
+
+  <g transform="translate(58 78)">
+    <text class="serif rust titleRust" x="0" y="0" dominant-baseline="hanging">从黑盒到白盒，</text>
+    <text class="serif ink titleInk" x="0" y="104" dominant-baseline="hanging">搭建测试评估体系</text>
+    <text class="serif rust sub" x="0" y="270">固定三大主维度</text>
+    <text class="sans ink sub" x="250" y="270">：端到端 / 过程能力 / 综合评测</text>
+  </g>
+
+  <g transform="translate(70 408)">
+    <g filter="url(#softShadow)">
+      <rect class="card" x="0" y="0" width="340" height="278" rx="12"/>
+      <text class="serif ink" x="28" y="48" font-size="34" font-weight="800">端到端</text>
+      <text class="sans rust" x="202" y="48" font-size="20" font-weight="800">黑盒评测</text>
+      <rect x="28" y="76" width="284" height="76" rx="9" fill="#fff8ef" stroke="#e2d4c2"/>
+      <text class="sans ink" x="48" y="110" font-size="21" font-weight="800">只看最终结果</text>
+      <text class="sans muted" x="48" y="138" font-size="16">是否完成用户目标，结果能否直接使用</text>
+      <path class="line" d="M46 190 h68"/>
+      <text class="sans muted" x="46" y="224" font-size="16">交付完整度 / 可用性 / 准确性 / 用户价值</text>
+    </g>
+    <path class="line" d="M365 136 h70"/>
+    <path class="line" d="M423 126 l13 10 -13 10"/>
+
+    <g transform="translate(462 0)" filter="url(#softShadow)">
+      <rect class="card" x="0" y="0" width="340" height="278" rx="12"/>
+      <text class="serif ink" x="28" y="48" font-size="34" font-weight="800">过程能力</text>
+      <text class="sans rust" x="205" y="48" font-size="20" font-weight="800">玻璃盒评测</text>
+      <rect x="28" y="76" width="284" height="76" rx="9" fill="#f3f7ff" stroke="#c8d7ef"/>
+      <text class="sans ink" x="48" y="110" font-size="21" font-weight="800">观察中间过程</text>
+      <text class="sans muted" x="48" y="138" font-size="16">路径、状态、工具调用、失败恢复是否可靠</text>
+      <circle cx="58" cy="199" r="10" fill="#c25d31"/>
+      <circle cx="126" cy="199" r="10" fill="#c25d31" opacity="0.72"/>
+      <circle cx="194" cy="199" r="10" fill="#c25d31" opacity="0.45"/>
+      <path class="line" d="M70 199 h44 M138 199 h44"/>
+      <text class="sans muted" x="46" y="240" font-size="16">决策路径 / 可控性 / 摩擦点 / Aha Moment</text>
+    </g>
+    <path class="line" d="M827 136 h70"/>
+    <path class="line" d="M885 126 l13 10 -13 10"/>
+
+    <g transform="translate(924 0)" filter="url(#softShadow)">
+      <rect class="card" x="0" y="0" width="340" height="278" rx="12"/>
+      <text class="serif ink" x="28" y="48" font-size="34" font-weight="800">综合评测</text>
+      <text class="sans rust" x="205" y="48" font-size="20" font-weight="800">白盒评测</text>
+      <rect x="28" y="76" width="284" height="76" rx="9" fill="#f2fbef" stroke="#cfe3c5"/>
+      <text class="sans ink" x="48" y="110" font-size="21" font-weight="800">全流程、多维度</text>
+      <text class="sans muted" x="48" y="138" font-size="16">模型、数据、技术、成本、安全、商业价值</text>
+      <rect x="46" y="184" width="52" height="52" rx="8" fill="#e4efff"/>
+      <rect x="114" y="184" width="52" height="52" rx="8" fill="#fff0c8"/>
+      <rect x="182" y="184" width="52" height="52" rx="8" fill="#eee2ff"/>
+      <rect x="250" y="184" width="52" height="52" rx="8" fill="#ffe8d8"/>
+    </g>
+  </g>
+
+  <g transform="translate(1058 82)">
+    <text class="sans ink body" x="220" y="0" text-anchor="middle" font-weight="800">输出形态示意</text>
+    <g transform="translate(0 32)" filter="url(#softShadow)">
+      <rect class="card" width="460" height="250" rx="12"/>
+      <text class="serif ink" x="28" y="48" font-size="27" font-weight="800">场景化评分表</text>
+      <rect x="28" y="74" width="404" height="34" rx="5" fill="#e8e3dc"/>
+      <text class="sans ink" x="45" y="96" font-size="15" font-weight="800">主维度</text>
+      <text class="sans ink" x="145" y="96" font-size="15" font-weight="800">二级指标</text>
+      <text class="sans ink" x="268" y="96" font-size="15" font-weight="800">评分逻辑</text>
+      <text class="sans ink" x="370" y="96" font-size="15" font-weight="800">权重</text>
+      <g class="sans muted" font-size="14">
+        <text x="45" y="135">端到端</text><text x="145" y="135">结果层</text><text x="268" y="135">可用 / 完整</text><text x="374" y="135">30%</text>
+        <text x="45" y="170">过程能力</text><text x="145" y="170">用户层</text><text x="268" y="170">路径 / 恢复</text><text x="374" y="170">40%</text>
+        <text x="45" y="205">综合评测</text><text x="145" y="205">模型数据层</text><text x="268" y="205">成本 / 安全</text><text x="374" y="205">30%</text>
+      </g>
+      <path d="M28 118 h404 M28 153 h404 M28 188 h404 M126 74 v151 M246 74 v151 M354 74 v151" stroke="#d3c7b9" stroke-width="1.2"/>
+    </g>
+
+    <g transform="translate(0 608)" filter="url(#softShadow)">
+      <rect class="card" width="460" height="170" rx="12"/>
+      <text class="serif ink" x="28" y="48" font-size="27" font-weight="800">本节高价值问题</text>
+      <rect x="28" y="72" width="404" height="78" rx="10" fill="#fff8ef" stroke="#e2d4c2"/>
+      <text class="sans muted" x="50" y="106" font-size="17">1. 这个场景真正的成功标准是什么？</text>
+      <text class="sans muted" x="50" y="137" font-size="17">2. 哪些失败会摧毁用户信任？</text>
+    </g>
+  </g>
+
+  <g transform="translate(70 780)">
+    <path class="thin" d="M0 0 h230"/>
+    <text class="serif ink" x="275" y="12" font-size="28" font-weight="800">不是打分模板，而是产品判断框架</text>
+    <path class="thin" d="M960 0 h230"/>
+  </g>
+</svg>

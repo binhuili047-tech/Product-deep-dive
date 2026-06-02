@@ -20,6 +20,22 @@ See [`CHANGELOG.md`](CHANGELOG.md) for the major changes made during the skill-b
 
 ---
 
+## Visual Overview / 图文介绍
+
+### 1. From Product Input to Feishu Document / 从产品输入到飞书文档
+
+![Product Deep Dive overview](assets/intro-01-overview.png)
+
+### 2. Evaluation System: Black Box to White Box / 测试评估体系
+
+![Product Deep Dive evaluation system](assets/intro-02-evaluation.png)
+
+### 3. Editable Six-Layer Architecture Whiteboard / 六层架构画板
+
+![Product Deep Dive architecture whiteboard](assets/intro-03-architecture.png)
+
+---
+
 ## Version Highlights
 
 | Version | Focus | What Changed |
