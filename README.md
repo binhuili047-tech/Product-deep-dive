@@ -32,6 +32,10 @@
 
 ![Product Deep Dive architecture whiteboard](assets/intro-03-architecture.png)
 
+## 效果示例
+
+- 飞书文档示例：[Product Deep Dive 示例文档](https://ucn5k46k8jsn.feishu.cn/wiki/NQVuw8oPSiWIDZkvgTFcYa7XnLa)
+
 ---
 
 ## 适用场景

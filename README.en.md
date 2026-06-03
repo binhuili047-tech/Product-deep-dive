@@ -32,6 +32,10 @@ This repository includes a [`LICENSE`](LICENSE) file. See [`CHANGELOG.md`](CHANG
 
 ![Product Deep Dive architecture whiteboard](assets/intro-03-architecture.png)
 
+## Live Example
+
+- Feishu document example: [Product Deep Dive sample document](https://ucn5k46k8jsn.feishu.cn/wiki/NQVuw8oPSiWIDZkvgTFcYa7XnLa)
+
 ---
 
 ## When To Use
